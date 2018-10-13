@@ -77,15 +77,13 @@
                 </div>
             @endif
 
-            <div class="content">                
-                <div class="">
-                    <img sizes="(max-width: 960px) 100vw, 960px"
-                        srcset="/images/logo_200.jpg 200w,
-                                /images/logo_600.jpg 600w,
-                                /images/logo_960.jpg 960w"
-                        src="/images/logo_960.jpg"
-                        alt="">
-                </div>
+            <div class="content">       
+                <img sizes="(max-width: 960px) 100vw, 960px"
+                    srcset="/images/logo_200.jpg 200w,
+                            /images/logo_600.jpg 600w,
+                            /images/logo_960.jpg 960w"
+                    src="/images/logo_960.jpg"
+                    alt="">
             </div>
         </div>
     </body>
