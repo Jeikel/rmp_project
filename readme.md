@@ -67,9 +67,9 @@ Debes primero crear la Base de datos MYSQL en tu servidor local.
 
 Posteriormente debes agregar las credenciales al archivo .env
 
-DB_HOST=localhost
-DB_DATABASE=tu_base_de_datos
-DB_USERNAME=root
+DB_HOST=localhost<br>
+DB_DATABASE=tu_base_de_datos<br>
+DB_USERNAME=root<br>
 DB_PASSWORD=
 
 Finalmente estarás habilitado para ejecutar la migración desde la consola usando artisan
