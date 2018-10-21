@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\IndProfile;
 class RegisterController extends Controller
 {
     /*
@@ -61,12 +62,17 @@ class RegisterController extends Controller
     {
         $user = User::create([
             'name' => $data['name'],
+            'mname' => $data['mname'],
+            'lname' => $data['lname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
         $verifyUser = VerifyUser::create([
             'user_id' => $user->id,
             'token' => sha1(time()),
+        ]);
+        $indProfile = IndProfile::create([
+            'user_id' => $user->id,
         ]);
         Mail::to($user->email)->send(new VerifyMail($user));
         return $user;
