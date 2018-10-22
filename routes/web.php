@@ -14,6 +14,10 @@ Route::get('/changePassword','HomeController@showChangePasswordForm');
 
 Route::post('/changePassword','HomeController@changePassword')->name('changePassword');
 
-Route::resource('indprofile', 'IndProfileController');
+Route::resource('/indprofile', 'IndProfileController');
+
+Route::post('/image','IndProfileController@Image');
+
+
 
 

@@ -16,6 +16,14 @@
   font-style: normal;
 }
 
+.image-upload > input{
+  display: none;
+}
+.image-upload img{
+  width:100px;
+  cursor: pointer;
+}
+
 .fa {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -7155,7 +7163,11 @@ a.box:active {
   
   .field3 { 
     width:98%;
-  }   
+  } 
+
+  .image-upload img{
+    width:60px;
+  }  
 
 }
 

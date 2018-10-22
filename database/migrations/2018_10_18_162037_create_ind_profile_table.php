@@ -16,7 +16,8 @@ class CreateIndProfileTable extends Migration
         Schema::create('ind_profile', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');            
+            $table->string('image_name')->nullable();
             $table->string('bphone',10)->nullable();
             $table->string('cphone',10)->nullable();
             $table->string('hometown',20)->nullable();

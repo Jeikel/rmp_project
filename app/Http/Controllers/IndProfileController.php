@@ -54,4 +54,25 @@ class IndProfileController extends Controller
         $user->lname = $request->lname;
         $user->save();
     }
+
+    public function Image(Request $request){
+      
+        $this->validate($request, [
+            'image' => 'required'
+        ]);
+    
+        if($request->get('image'))
+        {
+            $image = $request->get('image');
+            $name = $request->id.'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+            \Image::make($request->get('image'))->save(public_path('images/avatar/').$name);
+        }
+
+        $user = auth()->id();
+        $image = IndProfile::find($user);
+        $image->image_name = $name;
+        $image->save();
+
+        return response()->json(['success' => 'You have successfully uploaded an image'], 200);
+    }
 }

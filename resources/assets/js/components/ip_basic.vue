@@ -13,7 +13,20 @@
 
         <div class="panel-body" v-for="item in items">
             <div class="content">
-                <div class="pull-right"><img src="/images/avatar.png" class="img-circle" width="100" height="100"></div>                 
+                <div class="pull-right image-upload">
+                    <label for="file-input">
+                        <div v-if="image">
+                            <img :src="image" class="img-circle">
+                        </div>
+                        <div v-else-if="item.image_name">
+                            <img :src="'images/avatar/' + item.image_name + '?cache=none'" class="img-circle">
+                        </div>
+                        <div v-else>
+                            <img src="images/avatar/avatar.png" class="img-circle">
+                        </div>
+                    </label> 
+                    <input id="file-input" name="file" type="file" accept="image/gif, image/jpeg, image/png" v-on:change="onImageChange" class="form-control">
+                </div>
                 <div class="form-group">
                     <label style="font-size: 4vw">
                         {{item.name + ' ' +
@@ -38,7 +51,8 @@
             return{
                 updateActive : '',
                 errors:{},
-                items: []
+                items: [],
+                image: ''
             }
         },
 
@@ -52,6 +66,23 @@
             openUpdate(){
                 this.$children[0].list = this.items[0];
                 this.updateActive = 'is-active';
+            },
+            onImageChange(e) {
+                let files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                let reader = new FileReader();
+                let vm = this;
+                reader.onload = (e) => {
+                    vm.image = e.target.result;
+                    axios.post('/image',{image: vm.image}).then(response => {
+                        response.data.success;
+                    });
+                };
+                reader.readAsDataURL(file);
             },
             close(){
                 this.updateActive = ''
