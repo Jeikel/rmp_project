@@ -60,15 +60,16 @@ class IndProfileController extends Controller
         $this->validate($request, [
             'image' => 'required'
         ]);
+
+        $user = auth()->id();
     
         if($request->get('image'))
         {
             $image = $request->get('image');
-            $name = $request->id.'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+            $name = $user.'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
             \Image::make($request->get('image'))->save(public_path('images/avatar/').$name);
         }
 
-        $user = auth()->id();
         $image = IndProfile::find($user);
         $image->image_name = $name;
         $image->save();
