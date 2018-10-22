@@ -5829,6 +5829,10 @@ a.box:active {
           box-shadow: none;
 }
 
+.readonly {
+    background-color: #C3C0BF;
+}
+
 .input.is-white,
 .textarea.is-white {
   border-color: white;

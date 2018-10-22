@@ -12,7 +12,7 @@
 				<div class="field field3">
 					<label>Firts Name</label>
 					<div class="control">
-						<input class="input" type="text" placeholder="Firts Name" v-model="list.name" maxlength="50" required>
+						<input class="input readonly" type="text" placeholder="Firts Name" v-model="list.name" maxlength="50" readonly="readonly">
 					</div>
 					<small v-if="errors.name" class="has-text-danger">{{ errors.name[0] }}</small>
 				</div>
