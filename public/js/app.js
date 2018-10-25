@@ -43610,6 +43610,142 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['openmodal'],
@@ -43701,326 +43837,757 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("section", { staticClass: "modal-card-body" }, [
-        _c("div", { staticClass: "field field3" }, [
-          _c("label", [_vm._v("Firts Name")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "control" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.list.name,
-                  expression: "list.name"
-                }
-              ],
-              staticClass: "input readonly",
-              attrs: {
-                type: "text",
-                placeholder: "Firts Name",
-                maxlength: "50",
-                readonly: "readonly"
-              },
-              domProps: { value: _vm.list.name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.list, "name", $event.target.value)
-                }
-              }
-            })
+        _c("div", { staticClass: "panel panel-success" }, [
+          _c("div", { staticClass: "panel-heading" }, [
+            _vm._v("Name Information")
           ]),
           _vm._v(" "),
-          _vm.errors.name
-            ? _c("small", { staticClass: "has-text-danger" }, [
-                _vm._v(_vm._s(_vm.errors.name[0]))
-              ])
-            : _vm._e()
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "field field3" }, [
-          _c("label", [_vm._v("Middle Name")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "control" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.list.mname,
-                  expression: "list.mname"
-                }
-              ],
-              staticClass: "input",
-              attrs: {
-                type: "text",
-                placeholder: "Middle Name",
-                maxlength: "50",
-                required: ""
-              },
-              domProps: { value: _vm.list.mname },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+          _c("div", { staticClass: "panel-body" }, [
+            _c("div", { staticClass: "field field3" }, [
+              _c("label", [_vm._v("Firts Name")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "control" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.list.name,
+                      expression: "list.name"
+                    }
+                  ],
+                  staticClass: "input readonly",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Firts Name",
+                    maxlength: "50",
+                    readonly: "readonly"
+                  },
+                  domProps: { value: _vm.list.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.list, "name", $event.target.value)
+                    }
                   }
-                  _vm.$set(_vm.list, "mname", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _vm.errors.mname
-            ? _c("small", { staticClass: "has-text-danger" }, [
-                _vm._v(_vm._s(_vm.errors.mname[0]))
-              ])
-            : _vm._e()
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "field field3" }, [
-          _c("label", [_vm._v("Last Name")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "control" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.list.lname,
-                  expression: "list.lname"
-                }
-              ],
-              staticClass: "input",
-              attrs: {
-                type: "text",
-                placeholder: "Last Name",
-                maxlength: "50",
-                required: ""
-              },
-              domProps: { value: _vm.list.lname },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.list, "lname", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _vm.errors.lname
-            ? _c("small", { staticClass: "has-text-danger" }, [
-                _vm._v(_vm._s(_vm.errors.lname[0]))
-              ])
-            : _vm._e()
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "field field2" }, [
-          _c("label", [_vm._v("Country Code")]),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.list.bp_code,
-                  expression: "list.bp_code"
-                }
-              ],
-              staticClass: "select",
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.$set(
-                    _vm.list,
-                    "bp_code",
-                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                  )
-                }
-              }
-            },
-            [
-              _c("option", { domProps: { value: null } }, [
-                _vm._v("Select Country Code")
+                })
               ]),
               _vm._v(" "),
-              _vm._l(_vm.countries, function(country) {
-                return _c("option", { domProps: { value: country.id } }, [
-                  _vm._v(
-                    _vm._s(country.name + " (+" + country.phonecode + ")") +
-                      "\n\t\t\t\t\t\t    "
-                  )
-                ])
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _vm.error === "bp_code"
-            ? _c("small", { staticClass: "has-text-danger" }, [
-                _vm._v(_vm._s(_vm.msg))
-              ])
-            : _vm._e()
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "field field2" }, [
-          _c("label", [_vm._v("Business Phone")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "control" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.list.bphone,
-                  expression: "list.bphone"
-                },
-                {
-                  name: "mask",
-                  rawName: "v-mask",
-                  value: "(###) ###-####",
-                  expression: "'(###) ###-####'"
-                }
-              ],
-              staticClass: "input",
-              attrs: {
-                type: "tel",
-                placeholder: "Business Phone",
-                maxlength: "14"
-              },
-              domProps: { value: _vm.list.bphone },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+              _vm.errors.name
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.name[0]))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field3" }, [
+              _c("label", [_vm._v("Middle Name")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "control" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.list.mname,
+                      expression: "list.mname"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Middle Name",
+                    maxlength: "50",
+                    required: ""
+                  },
+                  domProps: { value: _vm.list.mname },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.list, "mname", $event.target.value)
+                    }
                   }
-                  _vm.$set(_vm.list, "bphone", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _vm.error === "bphone"
-            ? _c("small", { staticClass: "has-text-danger" }, [
-                _vm._v(_vm._s(_vm.msg))
-              ])
-            : _vm._e()
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "field field2" }, [
-          _c("label", [_vm._v("Country Code")]),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.list.cp_code,
-                  expression: "list.cp_code"
-                }
-              ],
-              staticClass: "select",
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.$set(
-                    _vm.list,
-                    "cp_code",
-                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                  )
-                }
-              }
-            },
-            [
-              _c("option", { domProps: { value: null } }, [
-                _vm._v("Select Country Code")
+                })
               ]),
               _vm._v(" "),
-              _vm._l(_vm.countries, function(country) {
-                return _c("option", { domProps: { value: country.id } }, [
-                  _vm._v(
-                    _vm._s(country.name + " (+" + country.phonecode + ")") +
-                      "\n\t\t\t\t\t\t    "
-                  )
-                ])
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _vm.error === "cp_code"
-            ? _c("small", { staticClass: "has-text-danger" }, [
-                _vm._v(_vm._s(_vm.msg))
-              ])
-            : _vm._e()
+              _vm.errors.mname
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.mname[0]))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field3" }, [
+              _c("label", [_vm._v("Last Name")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "control" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.list.lname,
+                      expression: "list.lname"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Last Name",
+                    maxlength: "50",
+                    required: ""
+                  },
+                  domProps: { value: _vm.list.lname },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.list, "lname", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm.errors.lname
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.lname[0]))
+                  ])
+                : _vm._e()
+            ])
+          ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "field field2" }, [
-          _c("label", [_vm._v("Cell Phone")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "control" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.list.cphone,
-                  expression: "list.cphone"
-                },
-                {
-                  name: "mask",
-                  rawName: "v-mask",
-                  value: "(###) ###-####",
-                  expression: "'(###) ###-####'"
-                }
-              ],
-              staticClass: "input",
-              attrs: {
-                type: "tel",
-                placeholder: "Cell Phone",
-                maxlength: "14"
-              },
-              domProps: { value: _vm.list.cphone },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.list, "cphone", $event.target.value)
-                }
-              }
-            })
+        _c("div", { staticClass: "panel panel-success" }, [
+          _c("div", { staticClass: "panel-heading" }, [
+            _vm._v("Phone Information")
           ]),
           _vm._v(" "),
-          _vm.error === "cphone"
-            ? _c("small", { staticClass: "has-text-danger" }, [
-                _vm._v(_vm._s(_vm.msg))
-              ])
-            : _vm._e()
+          _c("div", { staticClass: "panel-body" }, [
+            _c("div", { staticClass: "field field2" }, [
+              _c("label", [_vm._v("Country Code")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.list.bp_code,
+                      expression: "list.bp_code"
+                    }
+                  ],
+                  staticClass: "select",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.list,
+                        "bp_code",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("Select Country Code")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.countries, function(country) {
+                    return _c("option", { domProps: { value: country.id } }, [
+                      _vm._v(
+                        _vm._s(country.name + " (+" + country.phonecode + ")") +
+                          "\n\t\t\t\t\t\t\t\t    "
+                      )
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm.error === "bp_code"
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.msg))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field2" }, [
+              _c("label", [_vm._v("Business Phone")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "control" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.list.bphone,
+                      expression: "list.bphone"
+                    },
+                    {
+                      name: "mask",
+                      rawName: "v-mask",
+                      value: "(###) ###-####",
+                      expression: "'(###) ###-####'"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    type: "tel",
+                    placeholder: "Business Phone",
+                    maxlength: "14"
+                  },
+                  domProps: { value: _vm.list.bphone },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.list, "bphone", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm.error === "bphone"
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.msg))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field2" }, [
+              _c("label", [_vm._v("Country Code")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.list.cp_code,
+                      expression: "list.cp_code"
+                    }
+                  ],
+                  staticClass: "select",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.list,
+                        "cp_code",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("Select Country Code")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.countries, function(country) {
+                    return _c("option", { domProps: { value: country.id } }, [
+                      _vm._v(
+                        _vm._s(country.name + " (+" + country.phonecode + ")") +
+                          "\n\t\t\t\t\t\t\t\t    "
+                      )
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm.error === "cp_code"
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.msg))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field2" }, [
+              _c("label", [_vm._v("Cell Phone")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "control" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.list.cphone,
+                      expression: "list.cphone"
+                    },
+                    {
+                      name: "mask",
+                      rawName: "v-mask",
+                      value: "(###) ###-####",
+                      expression: "'(###) ###-####'"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    type: "tel",
+                    placeholder: "Cell Phone",
+                    maxlength: "14"
+                  },
+                  domProps: { value: _vm.list.cphone },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.list, "cphone", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm.error === "cphone"
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.msg))
+                  ])
+                : _vm._e()
+            ])
+          ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "field field1" }, [
+        _c("div", { staticClass: "panel panel-success" }, [
+          _c("div", { staticClass: "panel-heading" }, [
+            _vm._v("Office Address Information")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "panel-body" }, [
+            _c("div", { staticClass: "field field3" }, [
+              _c("label", [_vm._v("Country")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                { staticClass: "select" },
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("Select Country")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.countries, function(country) {
+                    return _c("option", { domProps: { value: country.id } }, [
+                      _vm._v(
+                        _vm._s(country.name + " (+" + country.phonecode + ")") +
+                          "\n\t\t\t\t\t\t\t\t    "
+                      )
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm.error === "cp_code"
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.msg))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field3" }, [
+              _c("label", [_vm._v("State")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                { staticClass: "select" },
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("Select State")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.countries, function(country) {
+                    return _c("option", { domProps: { value: country.id } }, [
+                      _vm._v(
+                        _vm._s(country.name + " (+" + country.phonecode + ")") +
+                          "\n\t\t\t\t\t\t\t\t    "
+                      )
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm.error === "cp_code"
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.msg))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field3" }, [
+              _c("label", [_vm._v("City")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                { staticClass: "select" },
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("Select City")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.countries, function(country) {
+                    return _c("option", { domProps: { value: country.id } }, [
+                      _vm._v(
+                        _vm._s(country.name + " (+" + country.phonecode + ")") +
+                          "\n\t\t\t\t\t\t\t\t    "
+                      )
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm.error === "cp_code"
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.msg))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field1" }, [
+              _c("label", [_vm._v("Office Address")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "control" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.list.oaddress,
+                      expression: "list.oaddress"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Office Address",
+                    maxlength: "50",
+                    required: ""
+                  },
+                  domProps: { value: _vm.list.oaddress },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.list, "oaddress", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm.errors.oaddress
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.oaddress[0]))
+                  ])
+                : _vm._e()
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "panel panel-success" }, [
+          _c("div", { staticClass: "panel-heading" }, [
+            _vm._v("Mailing Address Information")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "panel-body" }, [
+            _c("div", { staticClass: "field field3" }, [
+              _c("label", [_vm._v("Country")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                { staticClass: "select" },
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("Select Country")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.countries, function(country) {
+                    return _c("option", { domProps: { value: country.id } }, [
+                      _vm._v(
+                        _vm._s(country.name + " (+" + country.phonecode + ")") +
+                          "\n\t\t\t\t\t\t\t\t    "
+                      )
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm.error === "cp_code"
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.msg))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field3" }, [
+              _c("label", [_vm._v("State")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                { staticClass: "select" },
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("Select State")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.countries, function(country) {
+                    return _c("option", { domProps: { value: country.id } }, [
+                      _vm._v(
+                        _vm._s(country.name + " (+" + country.phonecode + ")") +
+                          "\n\t\t\t\t\t\t\t\t    "
+                      )
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm.error === "cp_code"
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.msg))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field3" }, [
+              _c("label", [_vm._v("City")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                { staticClass: "select" },
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("Select City")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.countries, function(country) {
+                    return _c("option", { domProps: { value: country.id } }, [
+                      _vm._v(
+                        _vm._s(country.name + " (+" + country.phonecode + ")") +
+                          "\n\t\t\t\t\t\t\t\t    "
+                      )
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm.error === "cp_code"
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.msg))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field1" }, [
+              _c("label", [_vm._v("Mailing Address")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "control" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.list.maddress,
+                      expression: "list.maddress"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Office Address",
+                    maxlength: "50",
+                    required: ""
+                  },
+                  domProps: { value: _vm.list.maddress },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.list, "maddress", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm.errors.maddress
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.maddress[0]))
+                  ])
+                : _vm._e()
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "panel panel-success" }, [
+          _c("div", { staticClass: "panel-heading" }, [
+            _vm._v("Billing Address Information")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "panel-body" }, [
+            _c("div", { staticClass: "field field3" }, [
+              _c("label", [_vm._v("Country")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                { staticClass: "select" },
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("Select Country")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.countries, function(country) {
+                    return _c("option", { domProps: { value: country.id } }, [
+                      _vm._v(
+                        _vm._s(country.name + " (+" + country.phonecode + ")") +
+                          "\n\t\t\t\t\t\t\t\t    "
+                      )
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm.error === "cp_code"
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.msg))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field3" }, [
+              _c("label", [_vm._v("State")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                { staticClass: "select" },
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("Select State")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.countries, function(country) {
+                    return _c("option", { domProps: { value: country.id } }, [
+                      _vm._v(
+                        _vm._s(country.name + " (+" + country.phonecode + ")") +
+                          "\n\t\t\t\t\t\t\t\t    "
+                      )
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm.error === "cp_code"
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.msg))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field3" }, [
+              _c("label", [_vm._v("City")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                { staticClass: "select" },
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("Select City")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.countries, function(country) {
+                    return _c("option", { domProps: { value: country.id } }, [
+                      _vm._v(
+                        _vm._s(country.name + " (+" + country.phonecode + ")") +
+                          "\n\t\t\t\t\t\t\t\t    "
+                      )
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm.error === "cp_code"
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.msg))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field1" }, [
+              _c("label", [_vm._v("Billing Address")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "control" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.list.baddress,
+                      expression: "list.baddress"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Office Address",
+                    maxlength: "50",
+                    required: ""
+                  },
+                  domProps: { value: _vm.list.baddress },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.list, "baddress", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm.errors.baddress
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.baddress[0]))
+                  ])
+                : _vm._e()
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field" }, [
           _c("label", [_vm._v("Hometown")]),
           _vm._v(" "),
           _c("div", { staticClass: "control" }, [
@@ -44054,7 +44621,7 @@ var render = function() {
             : _vm._e()
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "field field1" }, [
+        _c("div", { staticClass: "field" }, [
           _c("label", [_vm._v("About Me Description")]),
           _vm._v(" "),
           _c("div", { staticClass: "control" }, [
@@ -44092,7 +44659,7 @@ var render = function() {
             : _vm._e()
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "field field1" }, [
+        _c("div", { staticClass: "field" }, [
           _c("label", [_vm._v("Back Story Personal")]),
           _vm._v(" "),
           _c("div", { staticClass: "control" }, [
