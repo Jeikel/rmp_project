@@ -30,7 +30,21 @@ class CreateIndProfileTable extends Migration
             $table->date('birthday')->nullable();
             $table->integer('gender')->nullable();
             $table->string('ogender',30)->nullable();
-            $table->string('howint',200)->nullable();
+            $table->string('howint',200)->nullable();            
+            $table->integer('rating')->nullable();
+            $table->integer('rat_desc')->nullable();
+            $table->string('accomp',300)->nullable();
+            $table->string('publications',300)->nullable();
+            $table->string('projects',300)->nullable();
+            $table->string('ptimeline',2500)->nullable();
+            $table->string('devent',100)->nullable();
+            $table->string('vision',500)->nullable();
+            $table->string('obstacle',500)->nullable();
+            $table->string('openreg',250)->nullable();
+            $table->string('waysta',250)->nullable();
+            $table->string('whywork',250)->nullable();
+            $table->string('mission',250)->nullable();
+            $table->string('currentg',500)->nullable();
             $table->timestamps();
         });
     }

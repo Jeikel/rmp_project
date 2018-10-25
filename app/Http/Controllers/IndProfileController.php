@@ -38,6 +38,18 @@ class IndProfileController extends Controller
         $data->gender = $request->gender;
         $data->ogender = $request->ogender;
         $data->howint = $request->howint;
+        $data->accomp = $request->accomp;
+        $data->publications = $request->publications;
+        $data->projects = $request->projects;
+        $data->ptimeline = $request->ptimeline;
+        $data->devent = $request->devent;
+        $data->vision = $request->vision;
+        $data->obstacle = $request->obstacle;
+        $data->openreg = $request->openreg;
+        $data->waysta = $request->waysta;
+        $data->whywork = $request->whywork;
+        $data->mission = $request->mission;
+        $data->currentg = $request->currentg;
         $data->save();
 
         $user = User::find($request->id);

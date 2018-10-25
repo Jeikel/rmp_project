@@ -5,6 +5,7 @@ import VueMask from 'v-mask'
 Vue.use(VueMask);
 
 Vue.component('ip-basic', require('./components/ip_basic.vue'));
+Vue.component('ip-aditional', require('./components/ip_aditional.vue'));
 Vue.component('ip-job', require('./components/ip_job.vue'));
 Vue.component('ip-education', require('./components/ip_education.vue'));
 Vue.component('ip-press', require('./components/ip_press.vue'));
