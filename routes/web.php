@@ -18,6 +18,8 @@ Route::resource('/indprofile', 'IndProfileController');
 
 Route::post('/image','IndProfileController@Image');
 
+Route::get('/countries', 'CountriesController@index');
+
 
 
 

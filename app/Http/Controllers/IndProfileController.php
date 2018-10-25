@@ -24,20 +24,12 @@ class IndProfileController extends Controller
         return $data;
     }
 
-    public function store(Request $request) {
-        $data = new IndProfile();
-        $data->user_id = auth()->id();
-        $data->name = $request->name;
-        $data->age = $request->age;
-        $data->profession = $request->profession;
-        $data->save ();
-        return $data;
-    }  
-
     public function update(IndProfileRequest $request)
     {
         $data = IndProfile::find($request->id);
+        $data->bp_code = $request->bp_code;
         $data->bphone = $request->bphone;
+        $data->cp_code = $request->cp_code;
         $data->cphone = $request->cphone;
         $data->hometown = $request->hometown;
         $data->about = $request->about;

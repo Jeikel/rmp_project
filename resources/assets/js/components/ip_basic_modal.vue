@@ -30,19 +30,39 @@
 					</div>
 					<small v-if="errors.lname" class="has-text-danger">{{ errors.lname[0] }}</small>
 				</div>
-				<div class="field field2">
+				<div class="field field2-a">
+					<label>Country</label>
+						<select v-model="list.bp_code" class="select">
+						    <option value='0'>Select Country</option>
+						    <option v-for="country in countries" 
+						            :value='country.id'>{{ country.name + ' (+' + country.phonecode + ')' }}
+						    </option>
+					  	</select>
+					<small v-if="error==='bp_code'" class="has-text-danger">{{ msg }}</small>
+				</div>
+				<div class="field field2-b">
 					<label>Business Phone</label>
 					<div class="control">
-						<input class="input" type="tel" placeholder="Business Phone" v-model="list.bphone" maxlength="10" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+						<input class="input" type="tel" placeholder="Business Phone" v-model="list.bphone" maxlength="14" v-mask="'(###) ###-####'">
 					</div>
-					<small v-if="errors.bphone" class="has-text-danger">{{ errors.bphone[0] }}</small>
+					<small v-if="error==='bphone'" class="has-text-danger">{{ msg }}</small>
 				</div>
-				<div class="field field2">
+				<div class="field field2-a">
+					<label>Country</label>
+						<select v-model="list.cp_code" class="select">
+						    <option value='0'>Select Country</option>
+						    <option v-for="country in countries" 
+						            :value='country.id'>{{ country.name + ' (+' + country.phonecode + ')' }}
+						    </option>
+					  	</select>
+					<small v-if="error==='cp_code'" class="has-text-danger">{{ msg }}</small>
+				</div>
+				<div class="field field2-b">
 					<label>Cell Phone</label>
 					<div class="control">
-						<input class="input" type="tel" placeholder="Cell Phone" v-model="list.cphone" maxlength="10" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+						<input class="input" type="tel" placeholder="Cell Phone" v-model="list.cphone" maxlength="14" v-mask="'(###) ###-####'">
 					</div>
-					<small v-if="errors.cphone" class="has-text-danger">{{ errors.cphone[0] }}</small>
+					<small v-if="error==='cphone'" class="has-text-danger">{{ msg }}</small>
 				</div>
 				<div class="field field1">
 					<label>Hometown</label>
@@ -64,7 +84,7 @@
 						<textarea class="form-control" rows="4" placeholder="Back Story Personal" v-model="list.bstory" maxlength="200"></textarea>
 					</div>
 					<small v-if="errors.bstory" class="has-text-danger">{{ errors.bstory[0] }}</small>
-				</div>				
+				</div>	
 			</section>
 			<footer class="modal-card-foot">
 				<button class="btn btn-success" @click='update'>Save</button>
@@ -81,18 +101,54 @@
 			return{
 				list:{},
 				errors:{},
-				user: []
+				user: [],
+				error: '',
+				msg: '',
+				country: '',
+				countries:{}
 			}
 		},
+
+		mounted(){
+            axios.get('/countries').then((response) => {
+                this.countries = response.data;
+            });
+        },
 
 		methods:{
 			close(){
 				this.$emit('closeRequest')
 				this.errors = '';
+				this.error = '';
+				this.msg = '';
 			},
 			update(){
-			axios.patch(`/indprofile/${this.list.id}`,this.$data.list).then((response)=> this.close())
-				  .catch((error) => this.errors = error.response.data.errors)
+				if(this.list.bphone){
+					if(!this.list.bp_code){
+                    	this.error = 'bp_code';
+                    	this.msg = 'Select a code';
+                    	return;
+                    }
+					if(this.list.bphone.length < 14){
+                    	this.error = 'bphone';
+                    	this.msg = 'You must fill the whole number';
+                    	return;
+                    }
+                }
+                if(this.list.cphone){
+                	if(!this.list.cp_code){
+                    	this.error = 'cp_code';
+                    	this.msg = 'Select a code';
+                    	return;
+                    }
+                    if(this.list.cphone.length < 14){
+                    	this.error = 'cphone';
+                    	this.msg = 'You must fill the whole number';
+                    	return;
+                    }
+                }
+				axios.patch(`/indprofile/${this.list.id}`,this.$data.list).then((response)=> this.close())
+					.catch((error) => this.errors = error.response.data.errors)
 			}
 		}
 	}

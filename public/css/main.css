@@ -7138,6 +7138,20 @@ a.box:active {
   margin-bottom:10px;
 }
 
+.field2-a { 
+  width:16%;
+  float:left;
+  margin-right:2%;
+  margin-bottom:10px;
+}
+
+.field2-b { 
+  width:30%;
+  float:left;
+  margin-right:2%;
+  margin-bottom:10px;
+}
+
 @media screen and (min-width: 769px), print {
   .field.is-horizontal {
     display: -webkit-box;
@@ -7164,6 +7178,20 @@ a.box:active {
   .field3 { 
     width:98%;
   } 
+
+  .field2-a { 
+  width:34%;
+  float:left;
+  margin-right:2%;
+  margin-bottom:10px;
+}
+
+.field2-b { 
+  width:62%;
+  float:left;
+  margin-right:2%;
+  margin-bottom:10px;
+}
 
   .image-upload img{
     width:60px;

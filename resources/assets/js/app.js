@@ -1,6 +1,9 @@
 require('./bootstrap');
 window.Vue = require('vue');
 
+import VueMask from 'v-mask'
+Vue.use(VueMask);
+
 Vue.component('ip-basic', require('./components/ip_basic.vue'));
 Vue.component('ip-job', require('./components/ip_job.vue'));
 Vue.component('ip-education', require('./components/ip_education.vue'));

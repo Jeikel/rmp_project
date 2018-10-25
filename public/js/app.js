@@ -1076,21 +1076,27 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(11);
-module.exports = __webpack_require__(57);
+module.exports = __webpack_require__(58);
 
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_v_mask__ = __webpack_require__(39);
 __webpack_require__(12);
 window.Vue = __webpack_require__(36);
 
-Vue.component('ip-basic', __webpack_require__(39));
-Vue.component('ip-job', __webpack_require__(45));
-Vue.component('ip-education', __webpack_require__(48));
-Vue.component('ip-press', __webpack_require__(51));
-Vue.component('ip-positions', __webpack_require__(54));
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_0_v_mask__["a" /* default */]);
+
+Vue.component('ip-basic', __webpack_require__(40));
+Vue.component('ip-job', __webpack_require__(46));
+Vue.component('ip-education', __webpack_require__(49));
+Vue.component('ip-press', __webpack_require__(52));
+Vue.component('ip-positions', __webpack_require__(55));
 
 var app = new Vue({
     el: '#app'
@@ -43172,14 +43178,152 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 /* 39 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export VueMaskPlugin */
+/* unused harmony export VueMaskDirective */
+function format (text, wholeMask) {
+  if (!wholeMask) return text;
+
+  var maskStartRegExp = /^([^#ANX]+)/;
+
+  if (+text.length === 1 && maskStartRegExp.test(wholeMask)) {
+    text = maskStartRegExp.exec(wholeMask)[0] + text;
+  }
+
+  var newText = '';
+  var charOffset = 0;
+
+  for (var maskIndex = 0; maskIndex < wholeMask.length; maskIndex += 1) {
+    var mask = wholeMask.charAt(maskIndex);
+    switch (mask) {
+      case '#':
+        break;
+      case 'A':
+        break;
+      case '?':
+        break;
+      case 'N':
+        break;
+      case 'X':
+        break;
+      default:
+        text = text.replace(mask, '');
+    }
+  }
+  for (var _maskIndex = 0, x = 1; x && _maskIndex < wholeMask.length; _maskIndex += 1) {
+    var char = text.charAt(_maskIndex - charOffset);
+    var _mask = wholeMask.charAt(_maskIndex);
+
+    switch (_mask) {
+      case '#':
+        /\d/.test(char) ? newText += char : x = 0;
+        break;
+      case 'A':
+        /[a-z]/i.test(char) ? newText += char : x = 0;
+        break;
+      case 'N':
+        /[a-z0-9]/i.test(char) ? newText += char : x = 0;
+        break;
+
+      case '?':
+        charOffset += 1;
+        break;
+      case 'X':
+        newText += char;
+        break;
+      default:
+        newText += _mask;
+
+        if (char && char !== _mask) {
+          text = ' ' + text;
+        }
+
+        break;
+    }
+  }
+  return newText;
+}
+
+var trigger = function trigger(el, type) {
+  var e = document.createEvent('HTMLEvents');
+  e.initEvent(type, true, true);
+  el.dispatchEvent(e);
+};
+
+var inBrowser = typeof window !== 'undefined';
+var UA = inBrowser && window.navigator.userAgent.toLowerCase();
+var isEdge = UA && UA.indexOf('edge/') > 0;
+var isAndroid = UA && UA.indexOf('android') > 0;
+var isChrome = UA && /chrome\/\d+/.test(UA) && !isEdge;
+
+function updateValue(el) {
+  var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var value = el.value,
+      _el$dataset = el.dataset,
+      _el$dataset$previousV = _el$dataset.previousValue,
+      previousValue = _el$dataset$previousV === undefined ? '' : _el$dataset$previousV,
+      mask = _el$dataset.mask;
+
+
+  if (force || value && value !== previousValue && value.length > previousValue.length) {
+    el.value = format(value, mask);
+    if (isAndroid && isChrome) {
+      setTimeout(function () {
+        return trigger(el, 'input');
+      }, 0);
+    } else {
+      trigger(el, 'input');
+    }
+  }
+
+  el.dataset.previousValue = value;
+}
+
+function updateMask(el, mask) {
+  el.dataset.mask = mask;
+}
+
+var directive = {
+  bind: function bind(el, _ref) {
+    var value = _ref.value;
+
+    updateMask(el, value);
+    updateValue(el);
+  },
+  componentUpdated: function componentUpdated(el, _ref2) {
+    var value = _ref2.value,
+        oldValue = _ref2.oldValue;
+
+    var isMaskChanged = value !== oldValue;
+
+    if (isMaskChanged) {
+      updateMask(el, value);
+    }
+
+    updateValue(el, isMaskChanged);
+  }
+};
+
+var plugin = (function (Vue) {
+  Vue.directive('mask', directive);
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (plugin);
+
+
+
+/***/ }),
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(40)
+var __vue_script__ = __webpack_require__(41)
 /* template */
-var __vue_template__ = __webpack_require__(44)
+var __vue_template__ = __webpack_require__(45)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -43218,7 +43362,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43269,7 +43413,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-var modal = __webpack_require__(41);
+var modal = __webpack_require__(42);
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: { modal: modal },
     data: function data() {
@@ -43317,15 +43461,15 @@ var modal = __webpack_require__(41);
 });
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(42)
+var __vue_script__ = __webpack_require__(43)
 /* template */
-var __vue_template__ = __webpack_require__(43)
+var __vue_template__ = __webpack_require__(44)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -43364,11 +43508,31 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -43452,8 +43616,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			list: {},
 			errors: {},
-			user: []
+			user: [],
+			error: '',
+			msg: '',
+			country: '',
+			countries: {}
 		};
+	},
+	mounted: function mounted() {
+		var _this = this;
+
+		axios.get('/countries').then(function (response) {
+			_this.countries = response.data;
+		});
 	},
 
 
@@ -43461,21 +43636,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		close: function close() {
 			this.$emit('closeRequest');
 			this.errors = '';
+			this.error = '';
+			this.msg = '';
 		},
 		update: function update() {
-			var _this = this;
+			var _this2 = this;
 
+			if (this.list.bphone) {
+				if (!this.list.bp_code) {
+					this.error = 'bp_code';
+					this.msg = 'Select a code';
+					return;
+				}
+				if (this.list.bphone.length < 14) {
+					this.error = 'bphone';
+					this.msg = 'You must fill the whole number';
+					return;
+				}
+			}
+			if (this.list.cphone) {
+				if (!this.list.cp_code) {
+					this.error = 'cp_code';
+					this.msg = 'Select a code';
+					return;
+				}
+				if (this.list.cphone.length < 14) {
+					this.error = 'cphone';
+					this.msg = 'You must fill the whole number';
+					return;
+				}
+			}
 			axios.patch('/indprofile/' + this.list.id, this.$data.list).then(function (response) {
-				return _this.close();
+				return _this2.close();
 			}).catch(function (error) {
-				return _this.errors = error.response.data.errors;
+				return _this2.errors = error.response.data.errors;
 			});
 		}
 	}
 });
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -43616,7 +43817,64 @@ var render = function() {
             : _vm._e()
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "field field2" }, [
+        _c("div", { staticClass: "field field2-a" }, [
+          _c("label", [_vm._v("Country")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.list.bp_code,
+                  expression: "list.bp_code"
+                }
+              ],
+              staticClass: "select",
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.list,
+                    "bp_code",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "0" } }, [
+                _vm._v("Select Country")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.countries, function(country) {
+                return _c("option", { domProps: { value: country.id } }, [
+                  _vm._v(
+                    _vm._s(country.name + " (+" + country.phonecode + ")") +
+                      "\n\t\t\t\t\t\t    "
+                  )
+                ])
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _vm.error === "bp_code"
+            ? _c("small", { staticClass: "has-text-danger" }, [
+                _vm._v(_vm._s(_vm.msg))
+              ])
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field field2-b" }, [
           _c("label", [_vm._v("Business Phone")]),
           _vm._v(" "),
           _c("div", { staticClass: "control" }, [
@@ -43627,14 +43885,19 @@ var render = function() {
                   rawName: "v-model",
                   value: _vm.list.bphone,
                   expression: "list.bphone"
+                },
+                {
+                  name: "mask",
+                  rawName: "v-mask",
+                  value: "(###) ###-####",
+                  expression: "'(###) ###-####'"
                 }
               ],
               staticClass: "input",
               attrs: {
                 type: "tel",
                 placeholder: "Business Phone",
-                maxlength: "10",
-                onkeyup: "this.value=this.value.replace(/[^\\d]/,'')"
+                maxlength: "14"
               },
               domProps: { value: _vm.list.bphone },
               on: {
@@ -43648,14 +43911,71 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm.errors.bphone
+          _vm.error === "bphone"
             ? _c("small", { staticClass: "has-text-danger" }, [
-                _vm._v(_vm._s(_vm.errors.bphone[0]))
+                _vm._v(_vm._s(_vm.msg))
               ])
             : _vm._e()
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "field field2" }, [
+        _c("div", { staticClass: "field field2-a" }, [
+          _c("label", [_vm._v("Country")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.list.cp_code,
+                  expression: "list.cp_code"
+                }
+              ],
+              staticClass: "select",
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.list,
+                    "cp_code",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "0" } }, [
+                _vm._v("Select Country")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.countries, function(country) {
+                return _c("option", { domProps: { value: country.id } }, [
+                  _vm._v(
+                    _vm._s(country.name + " (+" + country.phonecode + ")") +
+                      "\n\t\t\t\t\t\t    "
+                  )
+                ])
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _vm.error === "cp_code"
+            ? _c("small", { staticClass: "has-text-danger" }, [
+                _vm._v(_vm._s(_vm.msg))
+              ])
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field field2-b" }, [
           _c("label", [_vm._v("Cell Phone")]),
           _vm._v(" "),
           _c("div", { staticClass: "control" }, [
@@ -43666,14 +43986,19 @@ var render = function() {
                   rawName: "v-model",
                   value: _vm.list.cphone,
                   expression: "list.cphone"
+                },
+                {
+                  name: "mask",
+                  rawName: "v-mask",
+                  value: "(###) ###-####",
+                  expression: "'(###) ###-####'"
                 }
               ],
               staticClass: "input",
               attrs: {
                 type: "tel",
                 placeholder: "Cell Phone",
-                maxlength: "10",
-                onkeyup: "this.value=this.value.replace(/[^\\d]/,'')"
+                maxlength: "14"
               },
               domProps: { value: _vm.list.cphone },
               on: {
@@ -43687,9 +44012,9 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm.errors.cphone
+          _vm.error === "cphone"
             ? _c("small", { staticClass: "has-text-danger" }, [
-                _vm._v(_vm._s(_vm.errors.cphone[0]))
+                _vm._v(_vm._s(_vm.msg))
               ])
             : _vm._e()
         ]),
@@ -43832,7 +44157,7 @@ if (false) {
 }
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -43943,15 +44268,15 @@ if (false) {
 }
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(46)
+var __vue_script__ = __webpack_require__(47)
 /* template */
-var __vue_template__ = __webpack_require__(47)
+var __vue_template__ = __webpack_require__(48)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -43990,7 +44315,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44022,7 +44347,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -44066,15 +44391,15 @@ if (false) {
 }
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(49)
+var __vue_script__ = __webpack_require__(50)
 /* template */
-var __vue_template__ = __webpack_require__(50)
+var __vue_template__ = __webpack_require__(51)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -44113,7 +44438,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44145,7 +44470,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -44189,15 +44514,15 @@ if (false) {
 }
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(52)
+var __vue_script__ = __webpack_require__(53)
 /* template */
-var __vue_template__ = __webpack_require__(53)
+var __vue_template__ = __webpack_require__(54)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -44236,7 +44561,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44268,7 +44593,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -44312,15 +44637,15 @@ if (false) {
 }
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(55)
+var __vue_script__ = __webpack_require__(56)
 /* template */
-var __vue_template__ = __webpack_require__(56)
+var __vue_template__ = __webpack_require__(57)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -44359,7 +44684,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44391,7 +44716,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -44435,7 +44760,7 @@ if (false) {
 }
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
