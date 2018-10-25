@@ -30,34 +30,34 @@
 					</div>
 					<small v-if="errors.lname" class="has-text-danger">{{ errors.lname[0] }}</small>
 				</div>
-				<div class="field field2-a">
-					<label>Country</label>
+				<div class="field field2">
+					<label>Country Code</label>
 						<select v-model="list.bp_code" class="select">
-						    <option value='0'>Select Country</option>
+						    <option :value="null">Select Country Code</option>
 						    <option v-for="country in countries" 
 						            :value='country.id'>{{ country.name + ' (+' + country.phonecode + ')' }}
 						    </option>
 					  	</select>
 					<small v-if="error==='bp_code'" class="has-text-danger">{{ msg }}</small>
 				</div>
-				<div class="field field2-b">
+				<div class="field field2">
 					<label>Business Phone</label>
 					<div class="control">
 						<input class="input" type="tel" placeholder="Business Phone" v-model="list.bphone" maxlength="14" v-mask="'(###) ###-####'">
 					</div>
 					<small v-if="error==='bphone'" class="has-text-danger">{{ msg }}</small>
 				</div>
-				<div class="field field2-a">
-					<label>Country</label>
+				<div class="field field2">
+					<label>Country Code</label>
 						<select v-model="list.cp_code" class="select">
-						    <option value='0'>Select Country</option>
+						    <option :value="null">Select Country Code</option>
 						    <option v-for="country in countries" 
 						            :value='country.id'>{{ country.name + ' (+' + country.phonecode + ')' }}
 						    </option>
 					  	</select>
 					<small v-if="error==='cp_code'" class="has-text-danger">{{ msg }}</small>
 				</div>
-				<div class="field field2-b">
+				<div class="field field2">
 					<label>Cell Phone</label>
 					<div class="control">
 						<input class="input" type="tel" placeholder="Cell Phone" v-model="list.cphone" maxlength="14" v-mask="'(###) ###-####'">
