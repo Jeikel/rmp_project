@@ -64,7 +64,7 @@
 
         methods:{
             openUpdate(){
-                this.$children[0].list = this.items[0];
+                this.$children[0].list = this.items[0]; 
                 this.updateActive = 'is-active';
             },
             onImageChange(e) {

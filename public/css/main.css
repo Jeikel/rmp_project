@@ -7138,6 +7138,10 @@ a.box:active {
   margin-bottom:10px;
 }
 
+.field4 { 
+  width:100%;
+}
+
 .field2-a { 
   width:16%;
   float:left;

@@ -20,6 +20,16 @@ Route::post('/image','IndProfileController@Image');
 
 Route::get('/countries', 'CountriesController@index');
 
+Route::get('/states', 'StatesController@index');
 
+Route::get('/states/{id}', 'StatesController@show');
+
+Route::get('/cstates/{id}', 'StatesController@country');
+
+Route::get('/cities', 'CitiesController@index');
+
+Route::get('/cities/{id}', 'CitiesController@show');
+
+Route::get('/scities/{id}', 'CitiesController@state');
 
 

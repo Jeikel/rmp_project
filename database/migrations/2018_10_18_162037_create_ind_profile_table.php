@@ -5,18 +5,13 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateIndProfileTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+{    
     public function up()
     {
         Schema::create('ind_profile', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');           
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('image_name')->nullable();
             $table->integer('bp_code')->nullable()->unsigned();
             $table->foreign('bp_code')->references('id')->on('countries');
@@ -24,6 +19,15 @@ class CreateIndProfileTable extends Migration
             $table->integer('cp_code')->nullable()->unsigned();
             $table->foreign('cp_code')->references('id')->on('countries');
             $table->string('cphone',14)->nullable();
+            $table->integer('ocity')->nullable()->unsigned();
+            $table->foreign('ocity')->references('id')->on('cities');
+            $table->string('oaddress',50)->nullable();
+            $table->integer('mcity')->nullable()->unsigned();
+            $table->foreign('mcity')->references('id')->on('cities');
+            $table->string('maddress',50)->nullable();
+            $table->integer('bcity')->nullable()->unsigned();
+            $table->foreign('bcity')->references('id')->on('cities');
+            $table->string('baddress',50)->nullable();
             $table->string('hometown',20)->nullable();
             $table->string('about',200)->nullable();
             $table->string('bstory',200)->nullable();
@@ -49,13 +53,10 @@ class CreateIndProfileTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::drop('ind_profile');
+        Schema::dropIfExists('ind_profile');
     }
+
+    
 }

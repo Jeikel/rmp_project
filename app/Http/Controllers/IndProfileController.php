@@ -9,7 +9,6 @@ use App\User;
 
 class IndProfileController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -31,6 +30,12 @@ class IndProfileController extends Controller
         $data->bphone = $request->bphone;
         $data->cp_code = $request->cp_code;
         $data->cphone = $request->cphone;
+        $data->ocity = $request->ocity;
+        $data->oaddress = $request->oaddress;
+        $data->mcity = $request->mcity;
+        $data->maddress = $request->maddress;
+        $data->bcity = $request->bcity;
+        $data->baddress = $request->baddress;
         $data->hometown = $request->hometown;
         $data->about = $request->about;
         $data->bstory = $request->bstory;
