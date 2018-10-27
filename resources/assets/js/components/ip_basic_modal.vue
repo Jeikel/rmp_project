@@ -10,14 +10,13 @@
 			</header>
 			<section class="modal-card-body">
 				<div class="panel panel-success">
-					<div class="panel-heading">Name Information</div>
+					<div class="panel-heading">Personal Information</div>
 					<div class="panel-body">
 						<div class="field field3">
 							<label>Firts Name</label>
 							<div class="control">
-								<input class="input readonly" type="text" placeholder="Firts Name" v-model="list.name" maxlength="50" readonly="readonly">
+								<input class="input readonly" type="text" placeholder="Firts Name" v-model="list.name" readonly="readonly">
 							</div>
-							<small v-if="errors.name" class="has-text-danger">{{ errors.name[0] }}</small>
 						</div>
 						<div class="field field3">
 							<label>Middle Name</label>
@@ -32,6 +31,43 @@
 								<input class="input" type="text" placeholder="Last Name" v-model="list.lname" maxlength="50">
 							</div>
 							<small v-if="errors.lname" class="has-text-danger">{{ errors.lname[0] }}</small>
+						</div>
+						<div class="field field3">
+							<label>Birthday</label>
+							<div class="control">
+								<input class="input" type="date" placeholder="Birthday" v-model="list.birthday">
+							</div>
+							<small v-if="errors.birthday" class="has-text-danger">{{ errors.birthday[0] }}</small>
+						</div>
+						<div class="field field3">
+							<label>Gender</label>
+							<select v-model="list.gender" class="select field1">
+							    <option :value="null">Select Gender</option>
+							    <option value=1>Male</option>
+   								<option value=2>Female</option>
+   								<option value=3>Other Gender</option>
+						  	</select>
+						  	<small v-if="errors.gender" class="has-text-danger">{{ errors.gender[0] }}</small>
+						</div>
+						<div class="field field3">
+							<label>Other Gender</label>
+							<div class="control">
+								<input v-if="list.gender==3" class="input" type="text" placeholder="Other Gender" v-model="list.ogender" maxlength="30">
+								<input v-else class="input readonly" type="text" placeholder="Other Gender" readonly="readonly">
+							</div>
+							<small v-if="error==='ogender'" class="has-text-danger">{{ msg }}</small>
+						</div>
+						<div class="field field2">
+							<label>Email Address</label>
+							<div class="control">
+								<input class="input readonly" type="text" placeholder="Email Address" v-model="list.email" readonly="readonly">
+							</div>
+						</div>
+						<div class="field field2">
+							<label>Business Profile</label>
+							<div class="control">
+								<input class="input readonly" type="text" placeholder="Business Profile" readonly="readonly">
+							</div>
 						</div>
 					</div>
 				</div>
@@ -362,6 +398,17 @@
 	                    this.$refs.baddress.focus();
 	                    return;
 	                }
+	            }
+
+	            if(this.list.gender == 3){
+					if(!this.list.ogender){
+						this.error = 'ogender';
+	                    this.msg = 'Can`t be blank';
+	                    this.$refs.ogender.focus();
+	                    return;
+	                }
+	            }else{
+	            	this.list.ogender = null;
 	            }
 
 				axios.patch(`/indprofile/${this.list.id}`,this.$data.list).then((response)=> this.close())

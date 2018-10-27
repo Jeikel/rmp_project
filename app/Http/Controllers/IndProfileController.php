@@ -26,6 +26,9 @@ class IndProfileController extends Controller
     public function update(IndProfileRequest $request)
     {
         $data = IndProfile::find($request->id);
+        $data->birthday = $request->birthday;
+        $data->gender = $request->gender;
+        $data->ogender = $request->ogender;
         $data->bp_code = $request->bp_code;
         $data->bphone = $request->bphone;
         $data->cp_code = $request->cp_code;
@@ -38,10 +41,7 @@ class IndProfileController extends Controller
         $data->baddress = $request->baddress;
         $data->hometown = $request->hometown;
         $data->about = $request->about;
-        $data->bstory = $request->bstory;
-        $data->birthday = $request->birthday;
-        $data->gender = $request->gender;
-        $data->ogender = $request->ogender;
+        $data->bstory = $request->bstory;        
         $data->howint = $request->howint;
         $data->accomp = $request->accomp;
         $data->publications = $request->publications;

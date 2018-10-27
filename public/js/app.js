@@ -43740,6 +43740,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['openmodal'],
@@ -43883,6 +43919,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				}
 			}
 
+			if (this.list.gender == 3) {
+				if (!this.list.ogender) {
+					this.error = 'ogender';
+					this.msg = 'Can`t be blank';
+					this.$refs.ogender.focus();
+					return;
+				}
+			} else {
+				this.list.ogender = null;
+			}
+
 			axios.patch('/indprofile/' + this.list.id, this.$data.list).then(function (response) {
 				return _this2.close();
 			}).catch(function (error) {
@@ -43982,7 +44029,7 @@ var render = function() {
       _c("section", { staticClass: "modal-card-body" }, [
         _c("div", { staticClass: "panel panel-success" }, [
           _c("div", { staticClass: "panel-heading" }, [
-            _vm._v("Name Information")
+            _vm._v("Personal Information")
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "panel-body" }, [
@@ -44003,7 +44050,6 @@ var render = function() {
                   attrs: {
                     type: "text",
                     placeholder: "Firts Name",
-                    maxlength: "50",
                     readonly: "readonly"
                   },
                   domProps: { value: _vm.list.name },
@@ -44016,13 +44062,7 @@ var render = function() {
                     }
                   }
                 })
-              ]),
-              _vm._v(" "),
-              _vm.errors.name
-                ? _c("small", { staticClass: "has-text-danger" }, [
-                    _vm._v(_vm._s(_vm.errors.name[0]))
-                  ])
-                : _vm._e()
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "field field3" }, [
@@ -44099,7 +44139,179 @@ var render = function() {
                     _vm._v(_vm._s(_vm.errors.lname[0]))
                   ])
                 : _vm._e()
-            ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field3" }, [
+              _c("label", [_vm._v("Birthday")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "control" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.list.birthday,
+                      expression: "list.birthday"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: { type: "date", placeholder: "Birthday" },
+                  domProps: { value: _vm.list.birthday },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.list, "birthday", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm.errors.birthday
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.birthday[0]))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field3" }, [
+              _c("label", [_vm._v("Gender")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.list.gender,
+                      expression: "list.gender"
+                    }
+                  ],
+                  staticClass: "select field1",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.list,
+                        "gender",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("Select Gender")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "1" } }, [_vm._v("Male")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "2" } }, [_vm._v("Female")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "3" } }, [
+                    _vm._v("Other Gender")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _vm.errors.gender
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.gender[0]))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field3" }, [
+              _c("label", [_vm._v("Other Gender")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "control" }, [
+                _vm.list.gender == 3
+                  ? _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.list.ogender,
+                          expression: "list.ogender"
+                        }
+                      ],
+                      staticClass: "input",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Other Gender",
+                        maxlength: "30"
+                      },
+                      domProps: { value: _vm.list.ogender },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.list, "ogender", $event.target.value)
+                        }
+                      }
+                    })
+                  : _c("input", {
+                      staticClass: "input readonly",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Other Gender",
+                        readonly: "readonly"
+                      }
+                    })
+              ]),
+              _vm._v(" "),
+              _vm.error === "ogender"
+                ? _c("small", { staticClass: "has-text-danger" }, [
+                    _vm._v(_vm._s(_vm.msg))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field field2" }, [
+              _c("label", [_vm._v("Email Address")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "control" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.list.email,
+                      expression: "list.email"
+                    }
+                  ],
+                  staticClass: "input readonly",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Email Address",
+                    readonly: "readonly"
+                  },
+                  domProps: { value: _vm.list.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.list, "email", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(0)
           ])
         ]),
         _vm._v(" "),
@@ -45071,7 +45283,27 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "field field2" }, [
+      _c("label", [_vm._v("Business Profile")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "control" }, [
+        _c("input", {
+          staticClass: "input readonly",
+          attrs: {
+            type: "text",
+            placeholder: "Business Profile",
+            readonly: "readonly"
+          }
+        })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

@@ -16,7 +16,10 @@ class IndProfileRequest extends FormRequest
     {
         return [
             'name' => 'required|max:50',
+            'mname'=> 'required|max:50',
             'lname'=> 'required|max:50',
+            'birthday'=> 'required',
+            'gender'=> 'required',
             'bphone'=> 'max:14',
             'cphone'=> 'max:14',
             'hometown'=> 'max:20',
