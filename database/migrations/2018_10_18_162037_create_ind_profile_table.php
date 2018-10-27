@@ -35,8 +35,7 @@ class CreateIndProfileTable extends Migration
             $table->string('about',200)->nullable();
             $table->string('bstory',200)->nullable();
             $table->string('howint',200)->nullable();            
-            $table->integer('rating')->nullable();
-            $table->integer('rat_desc')->nullable();
+            $table->decimal('rating',2,1)->default(0);
             $table->string('accomp',300)->nullable();
             $table->string('publications',300)->nullable();
             $table->string('projects',300)->nullable();

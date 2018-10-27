@@ -36,7 +36,24 @@
                 </div>
                 <div class="form-group">
                     <label>{{item.email}}</label>
-                </div>                
+                </div>  
+                <div class="form-group">
+                    <img v-if="item.rating==0.5" src="images/star-half.png">
+                    <img v-else-if="item.rating>1" src="images/star-on.png">
+                    <img v-else src="images/star-off.png">
+                    <img v-if="item.rating==1.5" src="images/star-half.png">
+                    <img v-else-if="item.rating>=2" src="images/star-on.png">
+                    <img v-else src="images/star-off.png">
+                    <img v-if="item.rating==2.5" src="images/star-half.png">
+                    <img v-else-if="item.rating>=3" src="images/star-on.png">
+                    <img v-else src="images/star-off.png">
+                    <img v-if="item.rating==3.5" src="images/star-half.png">
+                    <img v-else-if="item.rating>=4" src="images/star-on.png">
+                    <img v-else src="images/star-off.png">
+                    <img v-if="item.rating==4.5" src="images/star-half.png">
+                    <img v-else-if="item.rating==5" src="images/star-on.png">
+                    <img v-else src="images/star-off.png">
+                </div>              
             </div>
         </div>
         <modal :openmodal='updateActive' @closeRequest='close'></modal>

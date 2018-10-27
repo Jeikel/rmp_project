@@ -43413,6 +43413,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var modal = __webpack_require__(42);
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -45401,6 +45418,38 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v(_vm._s(item.email))])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              item.rating == 0.5
+                ? _c("img", { attrs: { src: "images/star-half.png" } })
+                : item.rating > 1
+                  ? _c("img", { attrs: { src: "images/star-on.png" } })
+                  : _c("img", { attrs: { src: "images/star-off.png" } }),
+              _vm._v(" "),
+              item.rating == 1.5
+                ? _c("img", { attrs: { src: "images/star-half.png" } })
+                : item.rating >= 2
+                  ? _c("img", { attrs: { src: "images/star-on.png" } })
+                  : _c("img", { attrs: { src: "images/star-off.png" } }),
+              _vm._v(" "),
+              item.rating == 2.5
+                ? _c("img", { attrs: { src: "images/star-half.png" } })
+                : item.rating >= 3
+                  ? _c("img", { attrs: { src: "images/star-on.png" } })
+                  : _c("img", { attrs: { src: "images/star-off.png" } }),
+              _vm._v(" "),
+              item.rating == 3.5
+                ? _c("img", { attrs: { src: "images/star-half.png" } })
+                : item.rating >= 4
+                  ? _c("img", { attrs: { src: "images/star-on.png" } })
+                  : _c("img", { attrs: { src: "images/star-off.png" } }),
+              _vm._v(" "),
+              item.rating == 4.5
+                ? _c("img", { attrs: { src: "images/star-half.png" } })
+                : item.rating == 5
+                  ? _c("img", { attrs: { src: "images/star-on.png" } })
+                  : _c("img", { attrs: { src: "images/star-off.png" } })
             ])
           ])
         ])
