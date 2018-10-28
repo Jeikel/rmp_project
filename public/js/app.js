@@ -1076,7 +1076,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(11);
-module.exports = __webpack_require__(64);
+module.exports = __webpack_require__(67);
 
 
 /***/ }),
@@ -1093,11 +1093,11 @@ window.Vue = __webpack_require__(36);
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_v_mask__["a" /* default */]);
 
 Vue.component('ip-basic', __webpack_require__(40));
-Vue.component('ip-aditional', __webpack_require__(46));
-Vue.component('ip-job', __webpack_require__(52));
-Vue.component('ip-education', __webpack_require__(55));
-Vue.component('ip-press', __webpack_require__(58));
-Vue.component('ip-positions', __webpack_require__(61));
+Vue.component('ip-aditional', __webpack_require__(49));
+Vue.component('ip-job', __webpack_require__(55));
+Vue.component('ip-education', __webpack_require__(58));
+Vue.component('ip-press', __webpack_require__(61));
+Vue.component('ip-positions', __webpack_require__(64));
 
 var app = new Vue({
     el: '#app'
@@ -43324,7 +43324,7 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(41)
 /* template */
-var __vue_template__ = __webpack_require__(45)
+var __vue_template__ = __webpack_require__(48)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -43487,7 +43487,7 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(43)
 /* template */
-var __vue_template__ = __webpack_require__(44)
+var __vue_template__ = __webpack_require__(47)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -43715,97 +43715,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
+var gaddress = __webpack_require__(44);
 /* harmony default export */ __webpack_exports__["default"] = ({
+	components: { gaddress: gaddress },
 	props: ['openmodal'],
 	data: function data() {
 		return {
 			list: {}, errors: {}, user: [],
 			error: '', msg: '', items: [],
-			countries: {}, country: '',
-			ocountries: {}, mcountries: {}, bcountries: {},
-			ocountry: null, mcountry: null, bcountry: null,
-			state: '', ostates: {}, mstates: {}, bstates: {},
-			ostate: null, mstate: null, bstate: null,
-			city: '', ocities: {}, mcities: {}, bcities: {}
+			countries: {}, gcity: null,
+			ocity: '', bcity: '', mcity: ''
 		};
 	},
 	mounted: function mounted() {
@@ -43814,60 +43734,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		axios.get('/countries').then(function (response) {
 			_this.countries = response.data;
 		});
+	},
+	created: function created() {
+		var _this2 = this;
 
 		axios.get('/indprofile').then(function (response) {
-			_this.items = response.data;
-			axios.get('/cities/' + _this.items[0].ocity).then(function (response) {
-				_this.ostates = response.data;
-				if (_this.ostates == "") {
-					_this.ostates = null;
-				} else {
-					_this.ostate = _this.ostates.state_id;
-					axios.get('/states/' + _this.ostate).then(function (response) {
-						_this.ocountries = response.data;
-						if (_this.ocountries == "") {
-							_this.ocountries = null;
-						}
-						_this.ocountry = _this.ocountries.country_id;
-						_this.getCountryStates(1, 0);
-						_this.getStatesCities(1);
-					});
-				}
-			});
-			axios.get('/cities/' + _this.items[0].mcity).then(function (response) {
-				_this.mstates = response.data;
-				if (_this.mstates == "") {
-					_this.mstates = null;
-				} else {
-					_this.mstate = _this.mstates.state_id;
-					axios.get('/states/' + _this.mstate).then(function (response) {
-						_this.mcountries = response.data;
-						if (_this.mcountries == "") {
-							_this.mcountries = null;
-						}
-						_this.mcountry = _this.mcountries.country_id;
-						_this.getCountryStates(2, 0);
-						_this.getStatesCities(2);
-					});
-				}
-			});
-			axios.get('/cities/' + _this.items[0].bcity).then(function (response) {
-				_this.bstates = response.data;
-				if (_this.bstates == "") {
-					_this.bstates = null;
-				} else {
-					_this.bstate = _this.bstates.state_id;
-					axios.get('/states/' + _this.bstate).then(function (response) {
-						_this.bcountries = response.data;
-						if (_this.bcountries == "") {
-							_this.bcountries = null;
-						}
-						_this.bcountry = _this.bcountries.country_id;
-						_this.getCountryStates(3, 0);
-						_this.getStatesCities(3);
-					});
-				}
-			});
+			_this2.items = response.data;
+			_this2.ocity = _this2.items[0].ocity;
+			_this2.mcity = _this2.items[0].mcity;
+			_this2.bcity = _this2.items[0].bcity;
 		});
 	},
 
@@ -43879,8 +43754,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.error = '';
 			this.msg = '';
 		},
+		getOCity: function getOCity(city) {
+			this.list.ocity = city;
+		},
+		getMCity: function getMCity(city) {
+			this.list.mcity = city;
+		},
+		getBCity: function getBCity(city) {
+			this.list.bcity = city;
+		},
+		oClean: function oClean() {
+			this.list.oaddress = null;
+			this.list.ocity = null;
+		},
+		mClean: function mClean() {
+			this.list.maddress = null;
+			this.list.mcity = null;
+		},
+		bClean: function bClean() {
+			this.list.baddress = null;
+			this.list.bcity = null;
+		},
 		update: function update() {
-			var _this2 = this;
+			var _this3 = this;
 
 			if (!this.list.bp_code) {
 				this.list.bphone = null;
@@ -43948,79 +43844,341 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			}
 
 			axios.patch('/indprofile/' + this.list.id, this.$data.list).then(function (response) {
-				return _this2.close();
+				return _this3.close();
 			}).catch(function (error) {
-				return _this2.errors = error.response.data.errors;
+				return _this3.errors = error.response.data.errors;
 			});
-		},
-		getCountryStates: function getCountryStates(ind, est) {
-			var _this3 = this;
-
-			switch (ind) {
-				case 1:
-					axios.get('/cstates/' + this.ocountry).then(function (response) {
-						_this3.ostates = response.data;
-						if (est == 1) {
-							_this3.ostate = null;
-							_this3.list.ocity = null;
-							_this3.list.oaddress = null;
-						}
-					});
-					break;
-				case 2:
-					axios.get('/cstates/' + this.mcountry).then(function (response) {
-						_this3.mstates = response.data;
-						if (est == 1) {
-							_this3.mstate = null;
-							_this3.list.mcity = null;
-							_this3.list.maddress = null;
-						}
-					});
-					break;
-				case 3:
-					axios.get('/cstates/' + this.bcountry).then(function (response) {
-						_this3.bstates = response.data;
-						if (est == 1) {
-							_this3.bstate = null;
-							_this3.list.bcity = null;
-							_this3.list.baddress = null;
-						}
-					});
-					break;
-			}
-		},
-		getStatesCities: function getStatesCities(ind) {
-			var _this4 = this;
-
-			switch (ind) {
-				case 1:
-					axios.get('/scities/' + this.ostate).then(function (response) {
-						_this4.ocities = response.data;
-						_this4.list.ocity = null;
-						_this4.list.oaddress = null;
-					});
-					break;
-				case 2:
-					axios.get('/scities/' + this.mstate).then(function (response) {
-						_this4.mcities = response.data;
-						_this4.list.mcity = null;
-						_this4.list.maddress = null;
-					});
-					break;
-				case 3:
-					axios.get('/scities/' + this.bstate).then(function (response) {
-						_this4.bcities = response.data;
-						_this4.list.bcity = null;
-						_this4.list.baddress = null;
-					});
-					break;
-			}
 		}
 	}
 });
 
 /***/ }),
 /* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(45)
+/* template */
+var __vue_template__ = __webpack_require__(46)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/gaddress.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b3c99f78", Component.options)
+  } else {
+    hotAPI.reload("data-v-b3c99f78", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 45 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	props: ['gcity'],
+	data: function data() {
+		return {
+			country: null, icountry: null,
+			countries: {}, icountries: {},
+			state: null, states: {},
+			city: null, cities: {}
+		};
+	},
+	mounted: function mounted() {
+		var _this = this;
+
+		axios.get('/countries').then(function (response) {
+			_this.countries = response.data;
+			if (_this.gcity) {
+				axios.get('/cities/' + _this.gcity).then(function (response) {
+					_this.states = response.data;
+					if (_this.states == "") {
+						_this.states = null;
+					} else {
+						_this.state = _this.states.state_id;
+						axios.get('/states/' + _this.state).then(function (response) {
+							_this.icountries = response.data;
+							if (_this.icountries == "") {
+								_this.icountries = null;
+							}
+							_this.icountry = _this.icountries.country_id;
+							_this.country = _this.icountry;
+							_this.city = _this.gcity;
+							_this.getCountryStates(0);
+							_this.getStatesCities(0);
+						});
+					}
+				});
+			}
+		});
+	},
+
+
+	methods: {
+		getCountryStates: function getCountryStates(est) {
+			var _this2 = this;
+
+			axios.get('/cstates/' + this.country).then(function (response) {
+				_this2.states = response.data;
+				if (est == 1) {
+					_this2.state = null;
+					_this2.city = null;
+					_this2.$emit('Clean');
+				}
+			});
+		},
+		getStatesCities: function getStatesCities(est) {
+			var _this3 = this;
+
+			axios.get('/scities/' + this.state).then(function (response) {
+				_this3.cities = response.data;
+				if (est == 1) {
+					_this3.city = null;
+					_this3.$emit('Clean');
+				}
+			});
+		},
+		setCities: function setCities(ind) {
+			this.$emit('SetCity', this.city);
+		}
+	}
+});
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "field field3" }, [
+      _c("label", [_vm._v("Country")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.country,
+              expression: "country"
+            }
+          ],
+          staticClass: "select",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.country = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              function($event) {
+                _vm.getCountryStates(1)
+              }
+            ]
+          }
+        },
+        [
+          _c("option", { domProps: { value: null } }, [
+            _vm._v("Select Country")
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.countries, function(country) {
+            return _c("option", { domProps: { value: country.id } }, [
+              _vm._v(_vm._s(country.name) + "\n\t\t\t    ")
+            ])
+          })
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "field field3" }, [
+      _c("label", [_vm._v("State")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.state,
+              expression: "state"
+            }
+          ],
+          staticClass: "select field4",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.state = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              function($event) {
+                _vm.getStatesCities(1)
+              }
+            ]
+          }
+        },
+        [
+          _c("option", { domProps: { value: null } }, [_vm._v("Select State")]),
+          _vm._v(" "),
+          _vm._l(_vm.states, function(state) {
+            return _c("option", { domProps: { value: state.id } }, [
+              _vm._v(_vm._s(state.name) + "\n\t\t\t    ")
+            ])
+          })
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "field field3" }, [
+      _c("label", [_vm._v("City")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.city,
+              expression: "city"
+            }
+          ],
+          staticClass: "select field4",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.city = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              function($event) {
+                _vm.setCities()
+              }
+            ]
+          }
+        },
+        [
+          _c("option", { domProps: { value: null } }, [_vm._v("Select City")]),
+          _vm._v(" "),
+          _vm._l(_vm.cities, function(city) {
+            return _c("option", { domProps: { value: city.id } }, [
+              _vm._v(_vm._s(city.name) + "\n\t\t\t    ")
+            ])
+          })
+        ],
+        2
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-b3c99f78", module.exports)
+  }
+}
+
+/***/ }),
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -44557,206 +44715,66 @@ var render = function() {
             _vm._v("Office Address Information")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "panel-body" }, [
-            _c("div", { staticClass: "field field3" }, [
-              _c("label", [_vm._v("Country")]),
+          _c(
+            "div",
+            { staticClass: "panel-body" },
+            [
+              _c("gaddress", {
+                attrs: { gcity: _vm.ocity },
+                on: { SetCity: _vm.getOCity, Clean: _vm.oClean }
+              }),
               _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.ocountry,
-                      expression: "ocountry"
-                    }
-                  ],
-                  staticClass: "select",
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.ocountry = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      },
-                      function($event) {
-                        _vm.getCountryStates(1, 1)
-                      }
-                    ]
-                  }
-                },
-                [
-                  _c("option", { domProps: { value: null } }, [
-                    _vm._v("Select Country")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.countries, function(country) {
-                    return _c("option", { domProps: { value: country.id } }, [
-                      _vm._v(_vm._s(country.name) + "\n\t\t\t\t\t\t\t\t    ")
-                    ])
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field field3" }, [
-              _c("label", [_vm._v("State")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.ostate,
-                      expression: "ostate"
-                    }
-                  ],
-                  staticClass: "select field4",
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.ostate = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      },
-                      function($event) {
-                        _vm.getStatesCities(1)
-                      }
-                    ]
-                  }
-                },
-                [
-                  _c("option", { domProps: { value: null } }, [
-                    _vm._v("Select State")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.ostates, function(state) {
-                    return _c("option", { domProps: { value: state.id } }, [
-                      _vm._v(_vm._s(state.name) + "\n\t\t\t\t\t\t\t\t    ")
-                    ])
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field field3" }, [
-              _c("label", [_vm._v("City")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.list.ocity,
-                      expression: "list.ocity"
-                    }
-                  ],
-                  staticClass: "select field4",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.list,
-                        "ocity",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                [
-                  _c("option", { domProps: { value: null } }, [
-                    _vm._v("Select City")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.ocities, function(city) {
-                    return _c("option", { domProps: { value: city.id } }, [
-                      _vm._v(_vm._s(city.name) + "\n\t\t\t\t\t\t\t\t    ")
-                    ])
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field field1" }, [
-              _c("label", [_vm._v("Office Address")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "control" }, [
-                _vm.list.ocity
-                  ? _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.list.oaddress,
-                          expression: "list.oaddress"
-                        }
-                      ],
-                      ref: "oaddress",
-                      staticClass: "input",
-                      attrs: {
-                        type: "text",
-                        placeholder: "Office Address",
-                        maxlength: "50"
-                      },
-                      domProps: { value: _vm.list.oaddress },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+              _c("div", { staticClass: "field field1" }, [
+                _c("label", { staticClass: "field1" }, [
+                  _vm._v("Office Address")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "control" }, [
+                  _vm.list.ocity
+                    ? _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.list.oaddress,
+                            expression: "list.oaddress"
                           }
-                          _vm.$set(_vm.list, "oaddress", $event.target.value)
+                        ],
+                        ref: "oaddress",
+                        staticClass: "input",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Office Address",
+                          maxlength: "50"
+                        },
+                        domProps: { value: _vm.list.oaddress },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.list, "oaddress", $event.target.value)
+                          }
                         }
-                      }
-                    })
-                  : _c("input", {
-                      staticClass: "input readonly",
-                      attrs: {
-                        placeholder: "Office Address - Select a City",
-                        readonly: "readonly"
-                      }
-                    })
-              ]),
-              _vm._v(" "),
-              _vm.error === "oaddress"
-                ? _c("small", { staticClass: "has-text-danger" }, [
-                    _vm._v(_vm._s(_vm.msg))
-                  ])
-                : _vm._e()
-            ])
-          ])
+                      })
+                    : _c("input", {
+                        staticClass: "input readonly",
+                        attrs: {
+                          placeholder: "Office Address - Select a City",
+                          readonly: "readonly"
+                        }
+                      })
+                ]),
+                _vm._v(" "),
+                _vm.error === "oaddress"
+                  ? _c("small", { staticClass: "has-text-danger" }, [
+                      _vm._v(_vm._s(_vm.msg))
+                    ])
+                  : _vm._e()
+              ])
+            ],
+            1
+          )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "panel panel-success" }, [
@@ -44764,206 +44782,66 @@ var render = function() {
             _vm._v("Mailing Address Information")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "panel-body" }, [
-            _c("div", { staticClass: "field field3" }, [
-              _c("label", [_vm._v("Country")]),
+          _c(
+            "div",
+            { staticClass: "panel-body" },
+            [
+              _c("gaddress", {
+                attrs: { gcity: _vm.mcity },
+                on: { SetCity: _vm.getMCity, Clean: _vm.mClean }
+              }),
               _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.mcountry,
-                      expression: "mcountry"
-                    }
-                  ],
-                  staticClass: "select",
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.mcountry = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      },
-                      function($event) {
-                        _vm.getCountryStates(2, 1)
-                      }
-                    ]
-                  }
-                },
-                [
-                  _c("option", { domProps: { value: null } }, [
-                    _vm._v("Select Country")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.countries, function(country) {
-                    return _c("option", { domProps: { value: country.id } }, [
-                      _vm._v(_vm._s(country.name) + "\n\t\t\t\t\t\t\t\t    ")
-                    ])
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field field3" }, [
-              _c("label", [_vm._v("State")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.mstate,
-                      expression: "mstate"
-                    }
-                  ],
-                  staticClass: "select field4",
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.mstate = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      },
-                      function($event) {
-                        _vm.getStatesCities(2)
-                      }
-                    ]
-                  }
-                },
-                [
-                  _c("option", { domProps: { value: null } }, [
-                    _vm._v("Select State")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.mstates, function(state) {
-                    return _c("option", { domProps: { value: state.id } }, [
-                      _vm._v(_vm._s(state.name) + "\n\t\t\t\t\t\t\t\t    ")
-                    ])
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field field3" }, [
-              _c("label", [_vm._v("City")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.list.mcity,
-                      expression: "list.mcity"
-                    }
-                  ],
-                  staticClass: "select field4",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.list,
-                        "mcity",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                [
-                  _c("option", { domProps: { value: null } }, [
-                    _vm._v("Select City")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.mcities, function(city) {
-                    return _c("option", { domProps: { value: city.id } }, [
-                      _vm._v(_vm._s(city.name) + "\n\t\t\t\t\t\t\t\t    ")
-                    ])
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field field1" }, [
-              _c("label", [_vm._v("Mailing Address")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "control" }, [
-                _vm.list.mcity
-                  ? _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.list.maddress,
-                          expression: "list.maddress"
-                        }
-                      ],
-                      ref: "maddress",
-                      staticClass: "input",
-                      attrs: {
-                        type: "text",
-                        placeholder: "Mailing Address",
-                        maxlength: "50"
-                      },
-                      domProps: { value: _vm.list.maddress },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+              _c("div", { staticClass: "field field1" }, [
+                _c("label", { staticClass: "field1" }, [
+                  _vm._v("Mailing Address")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "control" }, [
+                  _vm.list.mcity
+                    ? _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.list.maddress,
+                            expression: "list.maddress"
                           }
-                          _vm.$set(_vm.list, "maddress", $event.target.value)
+                        ],
+                        ref: "maddress",
+                        staticClass: "input",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Mailing Address",
+                          maxlength: "50"
+                        },
+                        domProps: { value: _vm.list.maddress },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.list, "maddress", $event.target.value)
+                          }
                         }
-                      }
-                    })
-                  : _c("input", {
-                      staticClass: "input readonly",
-                      attrs: {
-                        placeholder: "Mailing Address - Select a City",
-                        readonly: "readonly"
-                      }
-                    })
-              ]),
-              _vm._v(" "),
-              _vm.error === "maddress"
-                ? _c("small", { staticClass: "has-text-danger" }, [
-                    _vm._v(_vm._s(_vm.msg))
-                  ])
-                : _vm._e()
-            ])
-          ])
+                      })
+                    : _c("input", {
+                        staticClass: "input readonly",
+                        attrs: {
+                          placeholder: "Mailing Address - Select a City",
+                          readonly: "readonly"
+                        }
+                      })
+                ]),
+                _vm._v(" "),
+                _vm.error === "maddress"
+                  ? _c("small", { staticClass: "has-text-danger" }, [
+                      _vm._v(_vm._s(_vm.msg))
+                    ])
+                  : _vm._e()
+              ])
+            ],
+            1
+          )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "panel panel-success" }, [
@@ -44971,206 +44849,66 @@ var render = function() {
             _vm._v("Billing Address Information")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "panel-body" }, [
-            _c("div", { staticClass: "field field3" }, [
-              _c("label", [_vm._v("Country")]),
+          _c(
+            "div",
+            { staticClass: "panel-body" },
+            [
+              _c("gaddress", {
+                attrs: { gcity: _vm.bcity },
+                on: { SetCity: _vm.getBCity, Clean: _vm.bClean }
+              }),
               _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.bcountry,
-                      expression: "bcountry"
-                    }
-                  ],
-                  staticClass: "select",
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.bcountry = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      },
-                      function($event) {
-                        _vm.getCountryStates(3, 1)
-                      }
-                    ]
-                  }
-                },
-                [
-                  _c("option", { domProps: { value: null } }, [
-                    _vm._v("Select Country")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.countries, function(country) {
-                    return _c("option", { domProps: { value: country.id } }, [
-                      _vm._v(_vm._s(country.name) + "\n\t\t\t\t\t\t\t\t    ")
-                    ])
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field field3" }, [
-              _c("label", [_vm._v("State")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.bstate,
-                      expression: "bstate"
-                    }
-                  ],
-                  staticClass: "select field4",
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.bstate = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      },
-                      function($event) {
-                        _vm.getStatesCities(3)
-                      }
-                    ]
-                  }
-                },
-                [
-                  _c("option", { domProps: { value: null } }, [
-                    _vm._v("Select State")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.bstates, function(state) {
-                    return _c("option", { domProps: { value: state.id } }, [
-                      _vm._v(_vm._s(state.name) + "\n\t\t\t\t\t\t\t\t    ")
-                    ])
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field field3" }, [
-              _c("label", [_vm._v("City")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.list.bcity,
-                      expression: "list.bcity"
-                    }
-                  ],
-                  staticClass: "select field4",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.list,
-                        "bcity",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                [
-                  _c("option", { domProps: { value: null } }, [
-                    _vm._v("Select City")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.bcities, function(city) {
-                    return _c("option", { domProps: { value: city.id } }, [
-                      _vm._v(_vm._s(city.name) + "\n\t\t\t\t\t\t\t\t    ")
-                    ])
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field field1" }, [
-              _c("label", [_vm._v("Billing Address")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "control" }, [
-                _vm.list.bcity
-                  ? _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.list.baddress,
-                          expression: "list.baddress"
-                        }
-                      ],
-                      ref: "baddress",
-                      staticClass: "input",
-                      attrs: {
-                        type: "text",
-                        placeholder: "Billing Address",
-                        maxlength: "50"
-                      },
-                      domProps: { value: _vm.list.baddress },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+              _c("div", { staticClass: "field field1" }, [
+                _c("label", { staticClass: "field1" }, [
+                  _vm._v("Billing Address")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "control" }, [
+                  _vm.list.bcity
+                    ? _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.list.baddress,
+                            expression: "list.baddress"
                           }
-                          _vm.$set(_vm.list, "baddress", $event.target.value)
+                        ],
+                        ref: "baddress",
+                        staticClass: "input",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Billing Address",
+                          maxlength: "50"
+                        },
+                        domProps: { value: _vm.list.baddress },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.list, "baddress", $event.target.value)
+                          }
                         }
-                      }
-                    })
-                  : _c("input", {
-                      staticClass: "input readonly",
-                      attrs: {
-                        placeholder: "Billing Address - Select a City",
-                        readonly: "readonly"
-                      }
-                    })
-              ]),
-              _vm._v(" "),
-              _vm.error === "baddress"
-                ? _c("small", { staticClass: "has-text-danger" }, [
-                    _vm._v(_vm._s(_vm.msg))
-                  ])
-                : _vm._e()
-            ])
-          ])
+                      })
+                    : _c("input", {
+                        staticClass: "input readonly",
+                        attrs: {
+                          placeholder: "Billing Address - Select a City",
+                          readonly: "readonly"
+                        }
+                      })
+                ]),
+                _vm._v(" "),
+                _vm.error === "baddress"
+                  ? _c("small", { staticClass: "has-text-danger" }, [
+                      _vm._v(_vm._s(_vm.msg))
+                    ])
+                  : _vm._e()
+              ])
+            ],
+            1
+          )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "field" }, [
@@ -45331,7 +45069,7 @@ if (false) {
 }
 
 /***/ }),
-/* 45 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -45474,15 +45212,15 @@ if (false) {
 }
 
 /***/ }),
-/* 46 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(47)
+var __vue_script__ = __webpack_require__(50)
 /* template */
-var __vue_template__ = __webpack_require__(51)
+var __vue_template__ = __webpack_require__(54)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -45521,7 +45259,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 47 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45543,7 +45281,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-var modal = __webpack_require__(48);
+var modal = __webpack_require__(51);
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: { modal: modal },
     data: function data() {
@@ -45575,15 +45313,15 @@ var modal = __webpack_require__(48);
 });
 
 /***/ }),
-/* 48 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(49)
+var __vue_script__ = __webpack_require__(52)
 /* template */
-var __vue_template__ = __webpack_require__(50)
+var __vue_template__ = __webpack_require__(53)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -45622,7 +45360,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 49 */
+/* 52 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45760,7 +45498,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 50 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -46256,7 +45994,7 @@ if (false) {
 }
 
 /***/ }),
-/* 51 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -46308,15 +46046,15 @@ if (false) {
 }
 
 /***/ }),
-/* 52 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(53)
+var __vue_script__ = __webpack_require__(56)
 /* template */
-var __vue_template__ = __webpack_require__(54)
+var __vue_template__ = __webpack_require__(57)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -46345,129 +46083,6 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-774ccafc", Component.options)
   } else {
     hotAPI.reload("data-v-774ccafc", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 53 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
-});
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "panel panel-default" }, [
-      _c("div", { staticClass: "panel-heading" }, [
-        _c("h4", [
-          _vm._v("Job Experience\n            "),
-          _c("span", { staticClass: "btn-group pull-right" }, [
-            _c("button", { staticClass: "btn btn-success" }, [
-              _c("span", { staticClass: "glyphicon glyphicon-pencil " })
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "clearfix" })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "panel-body" }, [
-        _vm._v("\n        Job Experience\n    ")
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-774ccafc", module.exports)
-  }
-}
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(56)
-/* template */
-var __vue_template__ = __webpack_require__(57)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/ip_education.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-34557027", Component.options)
-  } else {
-    hotAPI.reload("data-v-34557027", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -46527,7 +46142,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "panel panel-default" }, [
       _c("div", { staticClass: "panel-heading" }, [
         _c("h4", [
-          _vm._v("Education\n            "),
+          _vm._v("Job Experience\n            "),
           _c("span", { staticClass: "btn-group pull-right" }, [
             _c("button", { staticClass: "btn btn-success" }, [
               _c("span", { staticClass: "glyphicon glyphicon-pencil " })
@@ -46539,7 +46154,7 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "panel-body" }, [
-        _vm._v("\n        Education\n    ")
+        _vm._v("\n        Job Experience\n    ")
       ])
     ])
   }
@@ -46549,7 +46164,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-34557027", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-774ccafc", module.exports)
   }
 }
 
@@ -46579,7 +46194,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/ip_press.vue"
+Component.options.__file = "resources/assets/js/components/ip_education.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -46588,9 +46203,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-c6aa1a7c", Component.options)
+    hotAPI.createRecord("data-v-34557027", Component.options)
   } else {
-    hotAPI.reload("data-v-c6aa1a7c", Component.options)
+    hotAPI.reload("data-v-34557027", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -46650,7 +46265,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "panel panel-default" }, [
       _c("div", { staticClass: "panel-heading" }, [
         _c("h4", [
-          _vm._v("Press Articles\n            "),
+          _vm._v("Education\n            "),
           _c("span", { staticClass: "btn-group pull-right" }, [
             _c("button", { staticClass: "btn btn-success" }, [
               _c("span", { staticClass: "glyphicon glyphicon-pencil " })
@@ -46662,7 +46277,7 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "panel-body" }, [
-        _vm._v("\n        Press Articles\n    ")
+        _vm._v("\n        Education\n    ")
       ])
     ])
   }
@@ -46672,7 +46287,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-c6aa1a7c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-34557027", module.exports)
   }
 }
 
@@ -46702,7 +46317,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/ip_positions.vue"
+Component.options.__file = "resources/assets/js/components/ip_press.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -46711,9 +46326,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1ee663e9", Component.options)
+    hotAPI.createRecord("data-v-c6aa1a7c", Component.options)
   } else {
-    hotAPI.reload("data-v-1ee663e9", Component.options)
+    hotAPI.reload("data-v-c6aa1a7c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -46773,6 +46388,129 @@ var staticRenderFns = [
     return _c("div", { staticClass: "panel panel-default" }, [
       _c("div", { staticClass: "panel-heading" }, [
         _c("h4", [
+          _vm._v("Press Articles\n            "),
+          _c("span", { staticClass: "btn-group pull-right" }, [
+            _c("button", { staticClass: "btn btn-success" }, [
+              _c("span", { staticClass: "glyphicon glyphicon-pencil " })
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "clearfix" })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [
+        _vm._v("\n        Press Articles\n    ")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-c6aa1a7c", module.exports)
+  }
+}
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(65)
+/* template */
+var __vue_template__ = __webpack_require__(66)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/ip_positions.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1ee663e9", Component.options)
+  } else {
+    hotAPI.reload("data-v-1ee663e9", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        console.log('Component mounted.');
+    }
+});
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "panel panel-default" }, [
+      _c("div", { staticClass: "panel-heading" }, [
+        _c("h4", [
           _vm._v("Positions\n            "),
           _c("span", { staticClass: "btn-group pull-right" }, [
             _c("button", { staticClass: "btn btn-success" }, [
@@ -46800,7 +46538,7 @@ if (false) {
 }
 
 /***/ }),
-/* 64 */
+/* 67 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

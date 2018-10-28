@@ -55,13 +55,13 @@
                     <img v-else src="images/star-off.png">
                 </div>              
             </div>
-        </div>
+        </div>        
         <modal :openmodal='updateActive' @closeRequest='close'></modal>
     </div>   
 </template>
 
 <script>
-    let modal = require('./ip_basic_modal.vue');
+    let modal = require('./ip_basic_modal.vue');    
     export default{
         components:{modal},
         data(){

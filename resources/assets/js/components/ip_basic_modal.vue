@@ -8,7 +8,7 @@
                 </p>
 				<button class="delete" aria-label="close" @click='close'></button>
 			</header>
-			<section class="modal-card-body">
+			<section class="modal-card-body">				
 				<div class="panel panel-success">
 					<div class="panel-heading">Personal Information</div>
 					<div class="panel-body">
@@ -113,35 +113,9 @@
 				<div class="panel panel-success">
 					<div class="panel-heading">Office Address Information</div>
 					<div class="panel-body">
-						<div class="field field3">
-							<label>Country</label>
-								<select v-model="ocountry" class="select" @change='getCountryStates(1,1)'>
-								    <option :value="null">Select Country</option>
-								    <option v-for="country in countries" 
-								            :value='country.id'>{{ country.name }}
-								    </option>
-							  	</select>
-						</div>
-						<div class="field field3">
-							<label>State</label>
-								<select v-model="ostate" class="select field4" @change='getStatesCities(1)'>
-								    <option :value="null">Select State</option>
-								    <option v-for="state in ostates" 
-								            :value='state.id'>{{ state.name }}
-								    </option>
-							  	</select>
-						</div>
-						<div class="field field3">
-							<label>City</label>
-								<select v-model="list.ocity" class="select field4">
-								    <option :value="null">Select City</option>
-								    <option v-for="city in ocities" 
-								            :value='city.id'>{{ city.name }}
-								    </option>
-							  	</select>
-						</div>
+						<gaddress @SetCity='getOCity' @Clean='oClean' :gcity='ocity'></gaddress>
 						<div class="field field1">
-							<label>Office Address</label>
+							<label class="field1">Office Address</label>
 							<div class="control">
 								<input v-if="list.ocity" ref='oaddress' class="input" type="text" placeholder="Office Address" v-model="list.oaddress" maxlength="50">
 								<input v-else class="input readonly" placeholder="Office Address - Select a City" readonly="readonly">
@@ -153,35 +127,9 @@
 				<div class="panel panel-success">
 					<div class="panel-heading">Mailing Address Information</div>
 					<div class="panel-body">
-						<div class="field field3">
-							<label>Country</label>
-								<select v-model="mcountry" class="select" @change='getCountryStates(2,1)'>
-								    <option :value="null">Select Country</option>
-								    <option v-for="country in countries" 
-								            :value='country.id'>{{ country.name }}
-								    </option>
-							  	</select>
-						</div>
-						<div class="field field3">
-							<label>State</label>
-								<select v-model="mstate" class="select field4" @change='getStatesCities(2)'>
-								    <option :value="null">Select State</option>
-								    <option v-for="state in mstates" 
-								            :value='state.id'>{{ state.name }}
-								    </option>
-							  	</select>
-						</div>
-						<div class="field field3">
-							<label>City</label>
-								<select v-model="list.mcity" class="select field4">
-								    <option :value="null">Select City</option>
-								    <option v-for="city in mcities" 
-								            :value='city.id'>{{ city.name }}
-								    </option>
-							  	</select>
-						</div>
+						<gaddress @SetCity='getMCity' @Clean='mClean' :gcity='mcity'></gaddress>
 						<div class="field field1">
-							<label>Mailing Address</label>
+							<label class="field1">Mailing Address</label>
 							<div class="control">
 								<input v-if="list.mcity" ref='maddress' class="input" type="text" placeholder="Mailing Address" v-model="list.maddress" maxlength="50">
 								<input v-else class="input readonly" placeholder="Mailing Address - Select a City" readonly="readonly">
@@ -193,35 +141,9 @@
 				<div class="panel panel-success">
 					<div class="panel-heading">Billing Address Information</div>
 					<div class="panel-body">
-						<div class="field field3">
-							<label>Country</label>
-								<select v-model="bcountry" class="select" @change='getCountryStates(3,1)'>
-								    <option :value="null">Select Country</option>
-								    <option v-for="country in countries" 
-								            :value='country.id'>{{ country.name }}
-								    </option>
-							  	</select>
-						</div>
-						<div class="field field3">
-							<label>State</label>
-								<select v-model="bstate" class="select field4" @change='getStatesCities(3)'>
-								    <option :value="null">Select State</option>
-								    <option v-for="state in bstates" 
-								            :value='state.id'>{{ state.name }}
-								    </option>
-							  	</select>
-						</div>
-						<div class="field field3">
-							<label>City</label>
-								<select v-model="list.bcity" class="select field4">
-								    <option :value="null">Select City</option>
-								    <option v-for="city in bcities" 
-								            :value='city.id'>{{ city.name }}
-								    </option>
-							  	</select>
-						</div>
+						<gaddress @SetCity='getBCity' @Clean='bClean' :gcity='bcity'></gaddress>
 						<div class="field field1">
-							<label>Billing Address</label>
+							<label class="field1">Billing Address</label>
 							<div class="control">
 								<input v-if="list.bcity" ref='baddress' class="input" type="text" placeholder="Billing Address" v-model="list.baddress" maxlength="50">
 								<input v-else class="input readonly" placeholder="Billing Address - Select a City" readonly="readonly">
@@ -256,86 +178,38 @@
 				<button class="btn btn-success" @click='update'>Save</button>
 				<button class="btn btn-secondary" @click='close'>Cancel</button>
 			</footer>
-		</div>
+		</div>		
 	</div>
 </template>
 
 <script>
+	let gaddress = require('./gaddress.vue');
 	export default{
+		components:{gaddress},
 		props:['openmodal'],
 		data(){
 			return{
 				list:{}, errors:{}, user: [],
 				error: '', msg: '', items: [],
-				countries:{}, country: '', 
-				ocountries:{}, mcountries:{}, bcountries:{},
-				ocountry: null, mcountry: null, bcountry: null,	
-				state: '', ostates:{}, mstates:{}, bstates:{},
-				ostate: null, mstate: null, bstate: null, 
-				city: '', ocities:{}, mcities:{}, bcities:{}
+				countries:{}, gcity: null, 
+				ocity: '', bcity: '', mcity: ''
 			}
 		},
 
 		mounted(){
             axios.get('/countries').then((response) => {
                 this.countries = response.data;
-            });
-
-            axios.get('/indprofile').then((response) => {
-                this.items = response.data;
-                axios.get(`/cities/${this.items[0].ocity}`).then((response) => {
-					this.ostates = response.data;
-					if(this.ostates==""){
-						this.ostates = null;
-					}else{
-						this.ostate = this.ostates.state_id;
-						axios.get(`/states/${this.ostate}`).then((response) => {
-							this.ocountries = response.data;
-							if(this.ocountries==""){
-								this.ocountries = null;
-							}
-							this.ocountry = this.ocountries.country_id;
-							this.getCountryStates(1,0);
-							this.getStatesCities(1);            			
-			            });	
-					}				
-	            });
-	            axios.get(`/cities/${this.items[0].mcity}`).then((response) => {
-					this.mstates = response.data;
-					if(this.mstates==""){
-						this.mstates = null;
-					}else{
-						this.mstate = this.mstates.state_id;
-						axios.get(`/states/${this.mstate}`).then((response) => {
-							this.mcountries = response.data;
-							if(this.mcountries==""){
-								this.mcountries = null;
-							}
-							this.mcountry = this.mcountries.country_id;
-							this.getCountryStates(2,0);
-							this.getStatesCities(2);            			
-			            });	
-					}				
-	            });
-	            axios.get(`/cities/${this.items[0].bcity}`).then((response) => {
-					this.bstates = response.data;
-					if(this.bstates==""){
-						this.bstates = null;
-					}else{
-						this.bstate = this.bstates.state_id;
-						axios.get(`/states/${this.bstate}`).then((response) => {
-							this.bcountries = response.data;
-							if(this.bcountries==""){
-								this.bcountries = null;
-							}
-							this.bcountry = this.bcountries.country_id;
-							this.getCountryStates(3,0);
-							this.getStatesCities(3);            			
-			            });
-					}					
-	            });
-            });            
+            });    
         },
+
+        created(){
+	        axios.get('/indprofile').then((response) => {
+	                this.items = response.data;
+	                this.ocity = this.items[0].ocity;  
+	                this.mcity = this.items[0].mcity; 
+	                this.bcity = this.items[0].bcity;  
+	        });            
+        },        
 
 		methods:{
 			close(){
@@ -343,6 +217,33 @@
 				this.errors = '';
 				this.error = '';
 				this.msg = '';
+			},
+
+			getOCity(city){
+				this.list.ocity = city;
+			},
+
+			getMCity(city){
+				this.list.mcity = city;
+			},
+
+			getBCity(city){
+				this.list.bcity = city;
+			},
+
+			oClean(){
+				this.list.oaddress = null;
+				this.list.ocity = null;
+			},
+
+			mClean(){
+				this.list.maddress = null;
+				this.list.mcity = null;
+			},
+
+			bClean(){
+				this.list.baddress = null;
+				this.list.bcity = null;
 			},
 
 			update(){
@@ -413,70 +314,7 @@
 
 				axios.patch(`/indprofile/${this.list.id}`,this.$data.list).then((response)=> this.close())
 					.catch((error) => this.errors = error.response.data.errors)
-			},
-
-			getCountryStates(ind,est){
-				switch(ind) {
-				    case 1:			        
-						axios.get(`/cstates/${this.ocountry}`).then((response) => {
-							this.ostates = response.data;
-							if(est==1){
-								this.ostate = null;
-								this.list.ocity = null;
-								this.list.oaddress = null;
-							}
-							
-			            });
-				        break;
-				    case 2:				        
-						axios.get(`/cstates/${this.mcountry}`).then((response) => {
-							this.mstates = response.data;
-							if(est==1){
-								this.mstate = null;
-								this.list.mcity = null;
-								this.list.maddress = null;
-							}							
-			            });
-				        break;
-				    case 3:				        
-						axios.get(`/cstates/${this.bcountry}`).then((response) => {
-							this.bstates = response.data;
-							if(est==1){
-								this.bstate = null;
-								this.list.bcity = null;
-								this.list.baddress = null;
-							}								
-			            });
-				        break;
-				}	
-			},
-
-			getStatesCities(ind){
-				switch(ind) {
-				    case 1:			
-						axios.get(`/scities/${this.ostate}`).then((response) => {
-							this.ocities = response.data;
-							this.list.ocity = null;
-							this.list.oaddress = null;
-			            });
-				        break;
-				    case 2:					
-						axios.get(`/scities/${this.mstate}`).then((response) => {
-							this.mcities = response.data;
-							this.list.mcity = null;
-							this.list.maddress = null;
-			            });
-				        break;
-				    case 3:			
-						axios.get(`/scities/${this.bstate}`).then((response) => {
-							this.bcities = response.data;
-							this.list.bcity = null;
-							this.list.baddress = null;
-			            });
-				        break;
-				}
-				
-			}
+			}			
 		}
 	}
 </script>
