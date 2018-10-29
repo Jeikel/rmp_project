@@ -93,6 +93,12 @@
 					</div>
 					<small v-if="errors.currentg" class="has-text-danger">{{ errors.currentg[0] }}</small>
 				</div>
+				<div class="panel panel-success field1">
+					<div class="panel-heading">Favorite Place in the World</div>
+					<div class="panel-body">
+						<gaddress @SetCity='getFCity' @Clean='fClean' :gcity='fcity'></gaddress>
+					</div>
+				</div>
 			</section>
 			<footer class="modal-card-foot">
 				<button class="btn btn-success" @click='update'>Save</button>
@@ -103,16 +109,34 @@
 </template>
 
 <script>
+let gaddress = require('./gaddress.vue');
 	export default{
+		components:{gaddress},
 		props:['openmodal'],
 		data(){
 			return{
 				list:{},
-				errors:{}
+				errors:{},
+				items: [],
+				fcity: ''
 			}
 		},
 
+		created(){
+	        axios.get('/indprofile').then((response) => {
+	                this.items = response.data;
+	                this.fcity = this.items[0].fcity;  
+	        });            
+        }, 
+
 		methods:{
+			getFCity(city){
+				this.list.fcity = city;
+			},
+			fClean(){
+				this.list.oaddress = null;
+				this.list.fcity = null;
+			},
 			close(){
 				this.$emit('closeRequest')
 				this.errors = ''

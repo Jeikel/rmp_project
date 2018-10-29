@@ -48,6 +48,8 @@ class CreateIndProfileTable extends Migration
             $table->string('whywork',250)->nullable();
             $table->string('mission',250)->nullable();
             $table->string('currentg',500)->nullable();
+            $table->integer('fcity')->nullable()->unsigned();
+            $table->foreign('fcity')->references('id')->on('cities');
             $table->timestamps();
         });
     }

@@ -45469,29 +45469,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
+var gaddress = __webpack_require__(44);
 /* harmony default export */ __webpack_exports__["default"] = ({
+	components: { gaddress: gaddress },
 	props: ['openmodal'],
 	data: function data() {
 		return {
 			list: {},
-			errors: {}
+			errors: {},
+			items: [],
+			fcity: ''
 		};
+	},
+	created: function created() {
+		var _this = this;
+
+		axios.get('/indprofile').then(function (response) {
+			_this.items = response.data;
+			_this.fcity = _this.items[0].fcity;
+		});
 	},
 
 
 	methods: {
+		getFCity: function getFCity(city) {
+			this.list.fcity = city;
+		},
+		fClean: function fClean() {
+			this.list.oaddress = null;
+			this.list.fcity = null;
+		},
 		close: function close() {
 			this.$emit('closeRequest');
 			this.errors = '';
 		},
 		update: function update() {
-			var _this = this;
+			var _this2 = this;
 
 			axios.patch('/indprofile/' + this.list.id, this.$data.list).then(function (response) {
-				return _this.close();
+				return _this2.close();
 			}).catch(function (error) {
-				return _this.errors = error.response.data.errors;
+				return _this2.errors = error.response.data.errors;
 			});
 		}
 	}
@@ -45964,6 +45989,24 @@ var render = function() {
                 _vm._v(_vm._s(_vm.errors.currentg[0]))
               ])
             : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "panel panel-success field1" }, [
+          _c("div", { staticClass: "panel-heading" }, [
+            _vm._v("Favorite Place in the World")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "panel-body" },
+            [
+              _c("gaddress", {
+                attrs: { gcity: _vm.fcity },
+                on: { SetCity: _vm.getFCity, Clean: _vm.fClean }
+              })
+            ],
+            1
+          )
         ])
       ]),
       _vm._v(" "),

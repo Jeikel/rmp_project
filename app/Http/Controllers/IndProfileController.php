@@ -55,6 +55,7 @@ class IndProfileController extends Controller
         $data->whywork = $request->whywork;
         $data->mission = $request->mission;
         $data->currentg = $request->currentg;
+        $data->fcity = $request->fcity;
         $data->save();
 
         $user = User::find($request->id);
