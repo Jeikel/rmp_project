@@ -45,7 +45,7 @@
 		mounted(){
             axios.get('/countries').then((response) => {
                 this.countries = response.data; 
-                if(this.gcity){                    
+                if(this.gcity){               
 	                axios.get(`/cities/${this.gcity}`).then((response) => {
 						this.states = response.data;
 						if(this.states==""){
@@ -80,7 +80,6 @@
 					}					
 	            });
 			},
-
 			getStatesCities(est){				
 				axios.get(`/scities/${this.state}`).then((response) => {
 					this.cities = response.data;
@@ -91,9 +90,36 @@
 	            });
 				
 			},
-
 			setCities(ind){		
 				this.$emit('SetCity',this.city);			
+			},
+			getCities(city){	
+				this.countries = "";
+				this.states = "";
+				axios.get('/countries').then((response) => {
+	                this.countries = response.data; 
+	                if(city){                   
+		                axios.get(`/cities/${city}`).then((response) => {
+							this.states = response.data;
+							if(this.states==""){
+								this.states = null;
+							}else{
+								this.state = this.states.state_id;
+								axios.get(`/states/${this.state}`).then((response) => {
+									this.icountries = response.data;
+									if(this.icountries==""){
+										this.icountries = null;
+									}
+									this.icountry = this.icountries.country_id;
+									this.country = this.icountry
+									this.city = city;
+									this.getCountryStates(0);
+									this.getStatesCities(0);        			
+					            });	
+							}				
+			            });
+		            }                       
+	            });   
 			}
 		}
 	}

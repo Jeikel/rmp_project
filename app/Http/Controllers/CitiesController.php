@@ -7,7 +7,12 @@ use App\Cities;
 
 class CitiesController extends Controller
 {
-	public function index()
+	public function __construct()
+    {
+        $this->middleware('auth');
+    } 
+
+    public function index()
     {
         return Cities::all();
     }     

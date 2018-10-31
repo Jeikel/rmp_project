@@ -13,6 +13,11 @@ class Cities extends Model
 
     public function states()
     {
-        return $this->belongsTo('States'); 
+        return $this->belongsTo('App\States'); 
+    } 
+
+    public function jobs()
+    {
+        return $this->belongsTo('App\Jobs'); 
     } 
 }
